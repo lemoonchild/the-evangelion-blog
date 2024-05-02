@@ -1,22 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oranienbaum&family=Pangolin&family=Shippori+Mincho+B1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oranienbaum&family=Pangolin&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Shippori+Mincho+B1&display=swap');
+@import url('https://fonts.cdnfonts.com/css/offbit-trial');
+@import url('https://fonts.cdnfonts.com/css/gotica-bastard');
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: 'Poppins', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.login__page {
   display: flex;
   justify-content: center;
-  align-self: center;
+  align-items: center;
   min-height: 100vh;
-  background: url(../images/back2.jpg) no-repeat center center/cover;
+  background: url('../../images/back2.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+
+.login__page body {
+  font-family: 'OffBit Trial', sans-serif;
 }
 
 .login {
@@ -40,14 +37,14 @@ body {
 }
 
 .login h1 {
-  font-family: 'Oranienbaum', serif;
+  font-family: 'GoticaBastard', sans-serif;
   font-size: 36px;
   text-align: center;
   padding: 1rem;
 }
 
 .login h2 {
-  font-size: 25px;
+  font-size: 28px;
   text-align: center;
   padding: 1rem;
 }
@@ -62,18 +59,19 @@ body {
 .input__box input {
   width: 100%;
   height: 100%;
-  background: transparent !important;
+  background: transparent;
   border: none;
   outline: none;
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   font-size: 16px;
-  color: white !important;
+  color: white;
   padding: 20px 45px 20px 20px;
+  font-family: 'OffBit Trial', sans-serif;
 }
 
 .input__box input::placeholder {
-  color: white;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .input__box input:-webkit-autofill,
@@ -81,9 +79,9 @@ body {
 .input__box input:-webkit-autofill:focus,
 .input__box input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
-  -webkit-text-fill-color: white !important;
+  -webkit-text-fill-color: white;
   color: white;
-  box-shadow: 0 0 0px 1000px transparent inset !important;
+  box-shadow: 0 0 0px 1000px transparent inset;
 }
 
 .input__box input:-moz-autofill,
@@ -92,7 +90,7 @@ body {
 .input__box input:-moz-autofill:active {
   transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
   color: white;
-  box-shadow: 0 0 0px 1000px transparent inset !important;
+  box-shadow: 0 0 0px 1000px transparent inset;
 }
 
 .input__box .icon {
@@ -116,6 +114,7 @@ body {
 }
 
 .login button {
+  font-family: 'OffBit Trial', sans-serif;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -137,21 +136,21 @@ body {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%; /* Inicia fuera del botón */
+  left: -100%;
   width: 100%;
   height: 100%;
-  background-color: #8aa4ba;
+  background-color: #a04544;
   transition: left 0.4s ease;
   border-radius: 20px;
   z-index: -1;
 }
 
 .login button:hover::after {
-  left: 0; /* Desliza hacia la derecha cubriendo todo el botón */
+  left: 0;
 }
 
 .login button:hover {
-  color: white; /* Cambia el color del texto a blanco cuando se pasa el ratón */
+  color: white;
 }
 
 .login .register__link {
