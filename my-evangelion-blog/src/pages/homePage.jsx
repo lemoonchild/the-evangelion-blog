@@ -20,9 +20,7 @@ const Blog = () => {
 
         <div className="header">
           <div className="elements__header">
-            <p className="username">
-              <span>Usuario:</span> {username}
-            </p>
+            <span>Usuario:</span> {username}
             <p>
               <a
                 href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
@@ -32,7 +30,6 @@ const Blog = () => {
                 help!
               </a>
             </p>
-
             <p>
               <Link to="/login">logout</Link>
             </p>
@@ -71,8 +68,16 @@ const Blog = () => {
               </div>
 
               <div className="nav__elements">
-                <p>learn more about me</p>
-                <p>Hello!</p>
+                <p>
+                  <span className="icon__star"> </span>learn more about me:
+                </p>
+
+                <div className="info">
+                  <span>♡ name:</span> <p>lemoonchildd</p>
+                  <span>♡ age:</span> <p>19</p>
+                  <span>♡ favorite things:</span> <p>my cat and my bf</p>
+                  <span>♡ carreer:</span> <p>software</p>
+                </div>
               </div>
             </div>
 
@@ -95,11 +100,14 @@ const Blog = () => {
           <div className="right">
             <div className="nav">
               <div className="title__left__bar">
-                <h1>updates</h1>
+                <h1>status</h1>
               </div>
 
-              <div className="nav__elements">
-                <p>asdsahdhjsadhjasd</p>
+              <div className="info">
+                <span>♡ 02/05/2024:</span> <p>thinking about my cat</p>
+                <span>♡ 02/05/2024:</span> <p>hate traffic</p>
+                <span>♡ 02/05/2024:</span> <p>feels like saturday</p>
+                <span>♡ 02/05/2024:</span> <p>this blog is killing me</p>
               </div>
             </div>
 

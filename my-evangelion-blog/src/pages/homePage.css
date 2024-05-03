@@ -217,11 +217,12 @@ h2 {
 
 .icon__home,
 .icon__me,
-.icon__posts {
+.icon__posts,
+.icon__star {
   display: inline-block;
   width: 50px;
   height: 50px;
-  margin-right: 20px;
+  margin-right: 10px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -240,6 +241,9 @@ h2 {
 
 .icon__posts {
   background-image: url('https://media.tenor.com/8Yp9XkSvkPIAAAAi/rei-ayanami-bread.gif');
+}
+.icon__star {
+  background-image: url('https://i.pinimg.com/originals/98/e3/6f/98e36f4aec7fd3ad3f41551b4def17f7.gif');
 }
 
 .element {
@@ -283,4 +287,14 @@ h2 {
 .cat {
   width: 200px;
   height: 300px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+.info span {
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
 }
