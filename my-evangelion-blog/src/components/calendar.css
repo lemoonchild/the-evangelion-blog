@@ -1,0 +1,30 @@
+.react-calendar {
+  width: 100%;
+  max-width: 350px;
+  background-color: #f0f0f0;
+  border: 1px solid #d7d7d7;
+  font-family: 'hearts', sans-serif; /* Tu fuente personalizada */
+}
+
+.react-calendar__navigation {
+  background-color: #4e2b56; /* Color personalizado para la barra de navegación */
+  color: white;
+}
+
+.react-calendar__navigation button {
+  color: white;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #8e6ca6; /* Color para los días del fin de semana */
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: #eeeeee; /* Fondo para los días al pasar el mouse */
+}
+
+.react-calendar__tile--active {
+  background: #8e6ca6; /* Fondo para el día seleccionado */
+  color: white;
+}

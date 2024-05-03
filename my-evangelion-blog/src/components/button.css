@@ -1,0 +1,30 @@
+.button {
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #8799ac;
+  transition: transform 0.1s ease, background-color 0.1s ease;
+  outline: none;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  filter: drop-shadow(0.5px 0.5px 0 white) drop-shadow(-1px 1px 0 white)
+    drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0.5px white)
+    drop-shadow(0 0.5px 1px white) drop-shadow(0.5px 0.5px 1px white)
+    drop-shadow(0.5px 0.5px 1px black);
+}
+
+.button:hover {
+  background-color: #7a8395;
+  transition: 0.3ms ease;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.button:focus {
+  outline: none;
+}
