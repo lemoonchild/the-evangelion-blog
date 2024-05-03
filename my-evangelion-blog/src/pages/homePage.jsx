@@ -117,8 +117,9 @@ const Blog = () => {
 
             <div className="calendar">
               <div className="title__left__bar">
-                <h1>calendar</h1>
+                <h1>my cat</h1>
               </div>
+              <img src="../../images/cat.png" alt="cat" className="cat" />
             </div>
             <img
               src="https://media.tenor.com/9WQGZwVRo9EAAAAi/evangelion.gif"

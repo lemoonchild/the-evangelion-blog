@@ -30,7 +30,7 @@ const GifSlider = () => {
     },
     {
       src: 'https://media1.tenor.com/m/3SJrBPHrsJYAAAAC/shinji.gif',
-      alt: 'evadancing',
+      alt: 'shinji2',
     },
     {
       src: 'https://media1.tenor.com/m/7RLlLi_p0ocAAAAC/ramiel-neon-genesis-evangelion.gif',
