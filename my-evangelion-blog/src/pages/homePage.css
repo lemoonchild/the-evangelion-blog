@@ -166,11 +166,8 @@ h2 {
 }
 
 .nav,
-.about__me,
 .calendar,
-.bio,
-.random__stuff,
-.recommendations {
+.bio {
   margin-bottom: 30px;
 }
 
@@ -221,17 +218,28 @@ h2 {
 .icon__home,
 .icon__me,
 .icon__posts {
-  background-image: url('../../images/image.png');
-  display: inline-block; /* Hace que el span se comporte como un elemento en línea pero que pueda tener dimensiones */
-  width: 30px; /* Ajusta según el tamaño de tu imagen */
-  height: 30px; /* Ajusta según el tamaño de tu imagen */
-  margin-right: 20px; /* Añade espacio entre el ícono y el texto */
-  background-position: center; /* Centra la imagen dentro del elemento */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  background-size: contain; /* Asegura que la imagen completa sea visible */
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   margin-left: 20px;
   position: relative;
   top: 10px;
+}
+
+.icon__home {
+  background-image: url('https://media.tenor.com/Hp5cpFFuHjwAAAAi/rei-chiquita.gif');
+}
+
+.icon__me {
+  background-image: url('https://media.tenor.com/k0aU-pXp0NMAAAAi/asuka-asuka-langley.gif');
+}
+
+.icon__posts {
+  background-image: url('https://media.tenor.com/8Yp9XkSvkPIAAAAi/rei-ayanami-bread.gif');
 }
 
 .element {
@@ -270,4 +278,9 @@ h2 {
 .calendar__blog {
   font-family: 'hearts', sans-serif;
   color: white;
+}
+
+.rei {
+  position: relative;
+  right: 20px;
 }

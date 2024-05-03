@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './homePage.css'
 import MyCalendar from '../components/calendar.jsx'
+import GifSlider from '../components/gifSlider.jsx'
+import RandomStuffSlider from '../components/randomStuffSlider.jsx'
 
 const Blog = () => {
   const username = 'Lemoonchild'
@@ -27,12 +29,12 @@ const Blog = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Help!
+                help!
               </a>
             </p>
 
             <p>
-              <Link to="/login">Logout</Link>
+              <Link to="/login">logout</Link>
             </p>
           </div>
         </div>
@@ -41,45 +43,44 @@ const Blog = () => {
           <div className="left">
             <div className="nav">
               <div className="title__left__bar">
-                <h1>Nav</h1>
+                <h1>nav</h1>
               </div>
 
               <div className="nav__elements">
                 <p className="element">
                   <Link to="/login">
-                    <span className="icon__home"></span> Home
+                    <span className="icon__home"></span> home
                   </Link>
                 </p>
                 <p className="element">
                   <Link to="/login">
-                    <span className="icon__posts"></span>Posts
+                    <span className="icon__posts"></span>posts
                   </Link>
                 </p>
                 <p className="element">
                   <Link to="/login">
-                    <span className="icon__me"></span>About me!
+                    <span className="icon__me"></span>about me!
                   </Link>
                 </p>
               </div>
             </div>
+            <GifSlider />
             <div className="bio">
               <div className="title__left__bar">
-                <h1>Bio</h1>
+                <h1>bio</h1>
               </div>
 
               <div className="nav__elements">
-                <p>Learn more about me</p>
+                <p>learn more about me</p>
                 <p>Hello!</p>
               </div>
             </div>
 
             <div className="calendar">
               <div className="title__left__bar">
-                <h1>Calendar</h1>
+                <h1>calendar</h1>
               </div>
-              <div className="nav__elements">
-                <MyCalendar className="calendar__blog" />
-              </div>
+              <MyCalendar className="calendar__blog" />
             </div>
           </div>
 
@@ -94,30 +95,18 @@ const Blog = () => {
           <div className="right">
             <div className="nav">
               <div className="title__left__bar">
-                <h1>Nav</h1>
+                <h1>updates</h1>
               </div>
 
               <div className="nav__elements">
-                <p className="element">
-                  <Link to="/login">
-                    <span className="icon__home"></span> Home
-                  </Link>
-                </p>
-                <p className="element">
-                  <Link to="/login">
-                    <span className="icon__posts"></span>Posts
-                  </Link>
-                </p>
-                <p className="element">
-                  <Link to="/login">
-                    <span className="icon__me"></span>About me!
-                  </Link>
-                </p>
+                <p>asdsahdhjsadhjasd</p>
               </div>
             </div>
+
+            <RandomStuffSlider />
             <div className="bio">
               <div className="title__left__bar">
-                <h1>Bio</h1>
+                <h1>to-do list</h1>
               </div>
 
               <div className="nav__elements">
@@ -128,12 +117,14 @@ const Blog = () => {
 
             <div className="calendar">
               <div className="title__left__bar">
-                <h1>Calendar</h1>
-              </div>
-              <div className="nav__elements">
-                <MyCalendar />
+                <h1>calendar</h1>
               </div>
             </div>
+            <img
+              src="https://media.tenor.com/9WQGZwVRo9EAAAAi/evangelion.gif"
+              alt="rei"
+              className="rei"
+            />
           </div>
         </div>
 
