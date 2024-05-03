@@ -1,4 +1,7 @@
-@import url('https://fonts.cdnfonts.com/css/offbit-trial');
+@font-face {
+  src: url(https://dl.dropbox.com/s/1479f8x52y3z5u4/rainyhearts.ttf);
+  font-family: hearts;
+}
 
 * {
   box-sizing: border-box;
@@ -8,7 +11,7 @@
 
 html,
 body {
-  font-family: 'OffBit Trial', sans-serif;
+  font-family: 'hearts', sans-serif;
   height: 100%;
   margin: 0;
   padding: 0;
