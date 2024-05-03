@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import LoginRegistro from './components/loginRegister'
-import BlogMain from './components/homePage'
+import LoginRegistro from './pages/loginRegister'
+import BlogMain from './pages/homePage'
 import './App.css'
 
 function App() {
