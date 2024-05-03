@@ -1,0 +1,273 @@
+@font-face {
+  font-family: angel;
+  src: url('../assets/fonts_folder/MetalBlockUltra.ttf') format('truetype');
+}
+
+.blog {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  height: 100vh;
+  background: url('../../images/back1.jpg');
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.all__blog {
+  border: ridge 4px #7e6fc4;
+  outline: solid 4px black;
+  width: 90%;
+  min-height: 90%;
+  margin: auto;
+  border-radius: 20px;
+  background-color: white;
+  overflow: auto;
+}
+
+.logo__evangelion {
+  align-self: center;
+  width: 500px;
+  height: auto;
+  padding-top: 40px;
+  filter: drop-shadow(0.5px 0.5px 0 white) drop-shadow(-1px 1px 0 white)
+    drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0.5px white)
+    drop-shadow(0 0.5px 1px white) drop-shadow(0.5px 0.5px 1px white)
+    drop-shadow(0.5px 0.5px 1px black);
+}
+
+.title__blog {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 20px;
+  background: none;
+  border: none;
+}
+
+.title__blog h1 {
+  font-family: 'angel', sans-serif;
+  font-size: 140px;
+  color: black;
+  letter-spacing: 5px;
+  font-weight: lighter;
+  text-shadow: 0 3px #7e6fc4, 3px 0 #7e6fc4;
+  width: auto;
+  margin: 0;
+  filter: drop-shadow(0.5px 0.5px 0 white) drop-shadow(-1px 1px 0 white)
+    drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0.5px white)
+    drop-shadow(0 0.5px 1px white) drop-shadow(0.5px 0.5px 1px white)
+    drop-shadow(0.5px 0.5px 1px black);
+  z-index: 2;
+}
+
+.title__blog h1,
+h2 {
+  position: relative;
+  top: -15px;
+  left: 10px;
+}
+
+.title__blog h2 {
+  top: 10px;
+}
+.title__blog h2 {
+  font-family: 'angel', sans-serif;
+  font-size: 100px;
+  color: black;
+  letter-spacing: 5px;
+  font-weight: lighter;
+  text-shadow: 0 3px #bfc9d5, 3px 0 #bfc9d5;
+  width: auto;
+  margin: 0;
+  filter: drop-shadow(0.5px 0.5px 0 white) drop-shadow(-1px 1px 0 white)
+    drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0.5px white)
+    drop-shadow(0 0.5px 1px white) drop-shadow(0.5px 0.5px 1px white)
+    drop-shadow(0.5px 0.5px 1px black);
+  z-index: 2;
+}
+
+.eva {
+  position: relative;
+  width: 300px;
+  height: auto;
+  margin: 20px auto;
+  transform: rotate(10deg);
+  top: -350px;
+  left: -580px;
+  z-index: 2;
+  filter: drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0.5px white)
+    drop-shadow(0.5px 0.5px 1px white) drop-shadow(-0.5px 0.5px 0 black)
+    drop-shadow(0 0.5px 0 black) drop-shadow(0 0.5px 0 black);
+}
+
+.elements__header {
+  position: relative;
+  align-items: center;
+  top: -85px;
+  display: flex;
+  gap: 10px;
+  font-size: 25px;
+  gap: 20px;
+  z-index: 1;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  opacity: 0.8;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: -550px;
+  z-index: 1;
+  border: ridge 4px black;
+  outline: solid 5px black;
+  border-radius: 10px;
+  width: 1350px;
+  height: 120px;
+  background: url('../images/back2.jpg') top right no-repeat;
+}
+
+.header a {
+  text-decoration: none;
+  padding: 10px;
+  opacity: 1;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.header span {
+  font-weight: bold;
+}
+.header a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #4e2b56, 0 0 30px #4e2b56,
+    0 0 40px #4e2b56;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  height: auto;
+  padding-top: 70px;
+}
+
+.main .left,
+.main .right {
+  flex: 1;
+  padding: 20px;
+}
+
+.main .center {
+  flex: 3;
+  padding: 20px;
+  background-color: green;
+}
+
+.nav,
+.about__me,
+.calendar,
+.bio,
+.random__stuff,
+.recommendations {
+  margin-bottom: 30px;
+}
+
+.nav,
+.bio,
+.calendar {
+  margin-top: 20px;
+  position: relative;
+  border: ridge 4px #b5a2c8;
+  outline: solid 5px black;
+  background: url('../../images/backleft1.png');
+  background-position: center; /* Centra la imagen dentro del elemento */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-size: cover; /* Asegura que la imagen completa sea visible */
+  min-height: 150px;
+}
+
+.title__left__bar {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0;
+  border: solid 2px #8e6ca6;
+  background: url('../../images/titleback.png');
+}
+
+.nav__elements {
+  padding-top: 20px;
+}
+
+.nav p,
+.bio p,
+.calendar p {
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.nav a,
+.bio a,
+.calendar a {
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.icon__home,
+.icon__me,
+.icon__posts {
+  background-image: url('../../images/image.png');
+  display: inline-block; /* Hace que el span se comporte como un elemento en línea pero que pueda tener dimensiones */
+  width: 30px; /* Ajusta según el tamaño de tu imagen */
+  height: 30px; /* Ajusta según el tamaño de tu imagen */
+  margin-right: 20px; /* Añade espacio entre el ícono y el texto */
+  background-position: center; /* Centra la imagen dentro del elemento */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-size: contain; /* Asegura que la imagen completa sea visible */
+  margin-left: 20px;
+  position: relative;
+  top: 10px;
+}
+
+.element {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 10px;
+  max-height: 55px;
+  width: 200px;
+  margin-left: 30px;
+  background: linear-gradient(
+    180deg,
+    #8e6ca6 0%,
+    #b5a2c8 45%,
+    #8e6ca6 47%,
+    #8e6ca6 60%,
+    #4e2b56 100%
+  );
+  padding-left: 5px;
+  border: solid 2px #8e6ca6;
+  filter: drop-shadow(0 0.5px 0 gray) drop-shadow(0 0.5px 0 gray) drop-shadow(0 0.5px 0.5px gray)
+    drop-shadow(0.5px 0.5px 1px gray) drop-shadow(-0.5px 0.5px 0 black) drop-shadow(0 0.5px 0 black)
+    drop-shadow(0 0.5px 0 black);
+}
+
+.element a {
+  text-decoration: none;
+  color: white;
+  line-height: 30px;
+}
+
+.element a:hover {
+  text-decoration: underline;
+}
+
+.calendar__blog {
+  font-family: 'hearts', sans-serif;
+  color: white;
+}
