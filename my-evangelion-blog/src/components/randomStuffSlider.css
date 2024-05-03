@@ -18,7 +18,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  animation: scroll-up 60s linear infinite;
+  animation: scroll-up 40s linear infinite;
 }
 
 @keyframes scroll-up {
