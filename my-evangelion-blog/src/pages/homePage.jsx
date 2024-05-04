@@ -140,7 +140,7 @@ const Blog = () => {
                 </p>
                 <p className="element">
                   <span className="icon__insta"></span>
-                  <a href="https://www.instagram.com/limoonchildd/?hl=es">insta!</a>
+                  <a href="https://www.instagram.com/limoonchildd/?hl=es">instagram!</a>
                 </p>
               </div>
             </div>
@@ -157,10 +157,6 @@ const Blog = () => {
               className="rei"
             />
           </div>
-        </div>
-
-        <div className="footer">
-          <p>this is the footer</p>
         </div>
       </div>
     </div>

@@ -15,12 +15,14 @@
 
 .all__blog {
   border: ridge 4px #7e6fc4;
-  outline: solid 4px black;
+  outline: solid 5px black;
+
   width: 90%;
   min-height: 90%;
   margin: auto;
-  border-radius: 20px;
-  background-color: white;
+  border-radius: 10px;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
   overflow: auto;
 }
 
@@ -126,6 +128,7 @@ h2 {
   width: 1350px;
   height: 120px;
   background: url('../images/back2.jpg') top right no-repeat;
+  color: #ffffff;
 }
 
 .header a {
@@ -133,16 +136,18 @@ h2 {
   padding: 10px;
   opacity: 1;
   transition: color 0.3s, text-shadow 0.3s;
+  color: #ffffff;
 }
 
 .header span {
   font-weight: bold;
+  color: #ffffff;
 }
 .header a:hover {
   text-decoration: underline;
   color: #ffffff;
-  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #4e2b56, 0 0 30px #4e2b56,
-    0 0 40px #4e2b56;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #32273f, 0 0 30px #32273f,
+    0 0 40px #32273f;
 }
 
 .main {
