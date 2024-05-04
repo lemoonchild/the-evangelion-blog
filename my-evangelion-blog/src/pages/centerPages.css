@@ -1,0 +1,79 @@
+.title,
+.about,
+.home,
+.my__posts {
+  margin-top: 20px;
+  position: relative;
+  border: ridge 4px #b5a2c8;
+  outline: solid 5px black;
+  background: #ffffff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: auto;
+}
+
+.title,
+.home,
+.about {
+  margin-bottom: 50px;
+}
+
+.about {
+  max-height: 1640px;
+  overflow-y: scroll;
+}
+
+.home__content {
+  margin-bottom: 100px;
+}
+
+.home__info {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.images__home,
+.about__images {
+  width: 90%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.text {
+  font-size: 20px;
+  width: 90%;
+  margin-left: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.home__info span {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.welcome p {
+  color: #ffffff;
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.content__item {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.content-section p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.content-section h3 {
+  margin-top: 20px;
+  font-size: 21px;
+  margin-bottom: 5px;
+}
