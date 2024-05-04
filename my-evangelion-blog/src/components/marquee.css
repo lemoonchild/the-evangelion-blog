@@ -1,0 +1,33 @@
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 20px;
+  position: relative;
+  border: ridge 4px #b5a2c8;
+  outline: solid 5px black;
+  background: black;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: auto;
+  margin-bottom: 50px;
+  max-width: 810px;
+}
+
+.marquee p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  white-space: nowrap;
+  font-size: 30px;
+  color: #ffffff;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
