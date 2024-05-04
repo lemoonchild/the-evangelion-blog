@@ -1,6 +1,7 @@
 import React from 'react'
 import './centerPages.css'
 import Marquee from '../components/marquee.jsx'
+import Post from '../components/post.jsx'
 
 export const Home = () => {
   return (
@@ -153,14 +154,57 @@ export const About = () => {
 }
 
 export const Posts = () => {
+  const postData = [
+    {
+      title: 'The Relevance of Evangelion in Modern Media',
+      content:
+        'More than two decades later, Evangelion continues to influence modern media with its innovative storytelling and exploration of complex themes.',
+      last_update: '2024-05-03',
+      author_id: 1,
+      author_name: 'AsukaFan',
+      category: 'Cultural Impact',
+      tags: 'innovation, storytelling, anime',
+    },
+    {
+      title: 'The Relevance of Evangelion in Modern Media',
+      content:
+        'More than two decades later, Evangelion continues to influence modern media with its innovative storytelling and exploration of complex themes.',
+      last_update: '2024-05-03',
+      author_id: 1,
+      author_name: 'AsukaFan',
+      category: 'Cultural Impact',
+      tags: 'innovation, storytelling, anime',
+    },
+    {
+      title: 'Character Depth in Evangelion: Analyzing Shinji',
+      content:
+        'Shinji Ikari, the protagonist of Neon Genesis Evangelion, is a complex character who embodies the struggles of identity and responsibility. Through the course of the series, viewers witness his psychological battles and growth amidst the apocalyptic backdrop. His interactions with other characters, such as Rei, Asuka, and Misato, further reveal layers of his personality and the themes of existentialism and loneliness that permeate the show.',
+      last_update: '2024-05-03',
+      author_id: 2,
+      author_name: 'ReiLover',
+      category: 'Character Analysis',
+      tags: 'Shinji, psychological analysis, existentialism, character growth, loneliness, pilot',
+    },
+  ]
+
   return (
     <div className="posts">
       <div className="title">
         <h1>Welcome to my posts</h1>
       </div>
+
       <div className="my__posts">
         <div className="title__bar">
-          <h1>About evangelion</h1>
+          <h1>My posts of evangelion!</h1>
+        </div>
+        <div className="info__home">
+          <div class="content-section">
+            <div className="all_posts">
+              {postData.map((post, index) => (
+                <Post key={index} {...post} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
