@@ -22,11 +22,6 @@ const Login = () => {
             <RiLockPasswordFill className="icon" />
           </div>
 
-          <div className="remember__me">
-            <label>
-              <input type="checkbox" required /> I agree with the terms and conditions
-            </label>
-          </div>
           <Link to="/blog">
             <button type="submit">Login!</button>
           </Link>
