@@ -162,30 +162,27 @@ h2 {
 .main .center {
   flex: 3;
   padding: 20px;
-  background-color: green;
-}
-
-.nav,
-.calendar,
-.bio {
-  margin-bottom: 30px;
 }
 
 .nav,
 .bio,
-.calendar {
+.calendar,
+.status,
+.find__me,
+.my__cat {
   margin-top: 20px;
   position: relative;
   border: ridge 4px #b5a2c8;
   outline: solid 5px black;
   background: url('../../images/backleft1.png');
-  background-position: center; /* Centra la imagen dentro del elemento */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  background-size: cover; /* Asegura que la imagen completa sea visible */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   min-height: 150px;
+  margin-bottom: 50px;
 }
 
-.title__left__bar {
+.title__bar {
   font-size: 15px;
   font-weight: bold;
   color: white;
@@ -201,7 +198,9 @@ h2 {
 
 .nav p,
 .bio p,
-.calendar p {
+.calendar p,
+.status p,
+.find__me p {
   color: #ffffff;
   font-size: 20px;
   margin-bottom: 20px;
@@ -209,7 +208,8 @@ h2 {
 
 .nav a,
 .bio a,
-.calendar a {
+.calendar a,
+.status a {
   color: #ffffff;
   font-size: 20px;
   margin-bottom: 20px;
@@ -218,7 +218,11 @@ h2 {
 .icon__home,
 .icon__me,
 .icon__posts,
-.icon__star {
+.icon__star,
+.icon__insta,
+.icon__github,
+.icon__twitter,
+.icon__steam {
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -231,6 +235,23 @@ h2 {
   top: 10px;
 }
 
+.icon__home,
+.icon__me,
+.icon__posts {
+  top: -6px;
+}
+
+.icon__insta,
+.icon__github,
+.icon__twitter,
+.icon__steam {
+  top: 0px;
+}
+
+.status {
+  max-height: 400px;
+  overflow: auto;
+}
 .icon__home {
   background-image: url('https://media.tenor.com/Hp5cpFFuHjwAAAAi/rei-chiquita.gif');
 }
@@ -244,6 +265,31 @@ h2 {
 }
 .icon__star {
   background-image: url('https://i.pinimg.com/originals/98/e3/6f/98e36f4aec7fd3ad3f41551b4def17f7.gif');
+}
+
+.icon__insta {
+  background-image: url('https://i.seadn.io/gae/dagAl0UM1srhLO8pD7cblU0DR_mEypemN9b66jF1rmgKFNvYWrki72ryMTMY-qsr3GQ76pChB74UaiynLSmmZfIP3GPKsaRfk2rq?auto=format&dpr=1&w=1000');
+}
+.icon__github {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-image: url('https://static-00.iconduck.com/assets.00/github-icon-2048x2048-4uclrgic.png');
+}
+.icon__twitter {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-image: url('https://cdn.icon-icons.com/icons2/2873/PNG/512/twitter_pixel_logo_icon_181924.png');
+}
+.icon__steam {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7a48ed11-13b2-44e3-a982-8d763d500a3e/db6u02a-edde930a-c504-4284-a0ce-bc88e4ba15b2.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdhNDhlZDExLTEzYjItNDRlMy1hOTgyLThkNzYzZDUwMGEzZVwvZGI2dTAyYS1lZGRlOTMwYS1jNTA0LTQyODQtYTBjZS1iYzg4ZTRiYTE1YjIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.bH5kQSIO2Fp1YhXcwTgqQCG-n0HADfWmtPIdqxaF_ZI');
 }
 
 .element {
@@ -269,13 +315,29 @@ h2 {
     drop-shadow(0 0.5px 0 black);
 }
 
-.element a {
+.nav__elements p {
   text-decoration: none;
   color: white;
   line-height: 30px;
 }
 
-.element a:hover {
+.nav__elements p:hover {
+  text-decoration: underline;
+}
+
+.elements {
+  text-decoration: none;
+  color: white;
+  line-height: 30px;
+}
+
+.find__me a {
+  text-decoration: none;
+  color: white;
+  line-height: 30px;
+}
+
+.find__me a:hover {
   text-decoration: underline;
 }
 
@@ -285,7 +347,7 @@ h2 {
 }
 
 .cat {
-  width: 200px;
+  width: 190px;
   height: 300px;
 }
 
@@ -297,4 +359,8 @@ h2 {
   font-weight: bold;
   color: white;
   font-size: 20px;
+}
+
+.rei__image {
+  margin-top: 30px;
 }
