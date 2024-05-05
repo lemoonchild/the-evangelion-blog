@@ -42,7 +42,7 @@ export const Home = () => {
           <div className="home__info">
             <span>What to expect?</span>
           </div>
-          <div class="content-section">
+          <div className="content-section">
             <p className="content-item">On this blog, you will find:</p>
             <div className="content-item">
               <h3>In-depth Analysis</h3>
@@ -90,8 +90,8 @@ export const About = () => {
           <h1>More about the developer!</h1>
         </div>
         <div className="info__home">
-          <div class="content-section">
-            <div class="content-item">
+          <div className="content-section">
+            <div className="content-item">
               <img
                 src="https://i.pinimg.com/originals/90/67/bb/9067bbe651edc612f5ca1ae581e7513b.gif"
                 alt="kaworu"
@@ -105,7 +105,7 @@ export const About = () => {
               </p>
             </div>
 
-            <div class="content-item">
+            <div className="content-item">
               <img
                 src="https://i.pinimg.com/originals/5b/8c/4a/5b8c4a0978f7d60fa90c313cbc860832.gif"
                 alt="toji"
@@ -118,7 +118,7 @@ export const About = () => {
                 new restaurants with my boyfriend.
               </p>
             </div>
-            <div class="content-item">
+            <div className="content-item">
               <img
                 src="https://i.pinimg.com/originals/52/7f/64/527f6409ae1738c5e44bed08f3bcd379.gif"
                 alt="dante"
@@ -132,7 +132,7 @@ export const About = () => {
                 Dionysus from Hades and Dazai from Bungou Stray Dogs.
               </p>
             </div>
-            <div class="content-item">
+            <div className="content-item">
               <img
                 src="https://i.pinimg.com/originals/6b/ad/54/6bad5469b6cf7c398b0148d8583d88dd.gif"
                 alt="stray"

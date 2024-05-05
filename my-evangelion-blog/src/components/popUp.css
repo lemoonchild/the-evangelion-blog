@@ -29,6 +29,7 @@
 .popup__inner__post {
   min-width: 600px;
   max-height: 900px;
+  font-size: 20px;
 }
 
 .close-btn {
@@ -48,6 +49,7 @@
   width: 100%;
   margin-top: 20px;
   padding: 10px;
+  font-size: 18px;
 }
 
 .form button {
