@@ -38,6 +38,10 @@
   margin-bottom: 30px;
 }
 
+.my__posts {
+  overflow-y: scroll;
+}
+
 .images__home,
 .about__images {
   width: 90%;
@@ -86,4 +90,51 @@
 .all_posts {
   margin-top: 40px;
   margin-bottom: 30px;
+}
+
+.form h2 {
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 40px;
+}
+
+.form input,
+textarea {
+  font-family: 'hearts', sans-serif;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.form label {
+  display: block;
+  font-weight: bold;
+  text-align: left;
+}
+
+.form .button__popup {
+  margin-top: 20px;
+  cursor: pointer;
+  font-family: 'hearts', sans-serif;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-image: url('https://i.pinimg.com/originals/8a/dc/49/8adc4938fa01a4da17246061dbf61585.gif');
+  color: white;
+  border-radius: 10px;
+}
+
+.form .button__popup:hover {
+  background-color: #f0f0f0;
+  background-image: url('https://i.pinimg.com/originals/ab/12/29/ab12297c17aea188fa41e7818706b961.gif');
+  color: white;
+}
+
+.create__post .popup-inner {
+  top: -200px;
+}
+
+.buttons__post {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  margin-right: 50px;
 }

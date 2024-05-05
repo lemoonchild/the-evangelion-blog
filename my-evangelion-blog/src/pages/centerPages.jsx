@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './centerPages.css'
 import Marquee from '../components/marquee.jsx'
 import Post from '../components/post.jsx'
+import Button from '../components/button.jsx'
+import { Popup, PopupDetail } from '../components/popUp.jsx'
+import AutoExpandingTextarea from '../components/expandingArea.jsx'
 
 export const Home = () => {
   return (
@@ -185,7 +188,99 @@ export const Posts = () => {
       category: 'Character Analysis',
       tags: 'Shinji, psychological analysis, existentialism, character growth, loneliness, pilot',
     },
+    {
+      title: 'The Relevance of Evangelion in Modern Media',
+      content:
+        "More than two decades later, Neon Genesis Evangelion continues to influence modern media with its innovative storytelling and exploration of complex themes. The series initially launched in the mid-1990s and quickly became a cornerstone of anime culture, influencing countless creators and spawning a variety of adaptations and merchandise. Evangelion is not just a show about giant robots fighting monstrous entities; it's a deep psychological exploration of its characters, each struggling with personal traumas and existential crises. This depth is what sets Evangelion apart and makes it resonate with a diverse audience, even years after its initial release.\n\nThe series also delves into philosophical and religious symbolism, adding layers of meaning that invite viewers to interpret and question the narrative and its themes. From existential philosophy to Freudian psychology, Evangelion wraps complex ideas in a narrative that is both accessible and engaging, challenging viewers to reflect on their own lives and beliefs.",
+      last_update: '2024-05-03',
+      author_id: 1,
+      author_name: 'AsukaFan',
+      category: 'Cultural Impact',
+      tags: 'innovation, storytelling, anime, psychology, philosophy, mecha',
+    },
+    {
+      title: 'The Relevance of Evangelion in Modern Media',
+      content:
+        "More than two decades later, Neon Genesis Evangelion continues to influence modern media with its innovative storytelling and exploration of complex themes. The series initially launched in the mid-1990s and quickly became a cornerstone of anime culture, influencing countless creators and spawning a variety of adaptations and merchandise. Evangelion is not just a show about giant robots fighting monstrous entities; it's a deep psychological exploration of its characters, each struggling with personal traumas and existential crises. This depth is what sets Evangelion apart and makes it resonate with a diverse audience, even years after its initial release.\n\nThe series also delves into philosophical and religious symbolism, adding layers of meaning that invite viewers to interpret and question the narrative and its themes. From existential philosophy to Freudian psychology, Evangelion wraps complex ideas in a narrative that is both accessible and engaging, challenging viewers to reflect on their own lives and beliefs.",
+      last_update: '2024-05-03',
+      author_id: 1,
+      author_name: 'AsukaFan',
+      category: 'Cultural Impact',
+      tags: 'innovation, storytelling, anime, psychology, philosophy, mecha',
+    },
+    {
+      title: 'The Relevance of Evangelion in Modern Media',
+      content:
+        "More than two decades later, Neon Genesis Evangelion continues to influence modern media with its innovative storytelling and exploration of complex themes. The series initially launched in the mid-1990s and quickly became a cornerstone of anime culture, influencing countless creators and spawning a variety of adaptations and merchandise. Evangelion is not just a show about giant robots fighting monstrous entities; it's a deep psychological exploration of its characters, each struggling with personal traumas and existential crises. This depth is what sets Evangelion apart and makes it resonate with a diverse audience, even years after its initial release.\n\nThe series also delves into philosophical and religious symbolism, adding layers of meaning that invite viewers to interpret and question the narrative and its themes. From existential philosophy to Freudian psychology, Evangelion wraps complex ideas in a narrative that is both accessible and engaging, challenging viewers to reflect on their own lives and beliefs.",
+      last_update: '2024-05-03',
+      author_id: 1,
+      author_name: 'AsukaFan',
+      category: 'Cultural Impact',
+      tags: 'innovation, storytelling, anime, psychology, philosophy, mecha',
+    },
+    {
+      title: 'The Relevance of Evangelion in Modern Media',
+      content:
+        "More than two decades later, Neon Genesis Evangelion continues to influence modern media with its innovative storytelling and exploration of complex themes. The series initially launched in the mid-1990s and quickly became a cornerstone of anime culture, influencing countless creators and spawning a variety of adaptations and merchandise. Evangelion is not just a show about giant robots fighting monstrous entities; it's a deep psychological exploration of its characters, each struggling with personal traumas and existential crises. This depth is what sets Evangelion apart and makes it resonate with a diverse audience, even years after its initial release.\n\nThe series also delves into philosophical and religious symbolism, adding layers of meaning that invite viewers to interpret and question the narrative and its themes. From existential philosophy to Freudian psychology, Evangelion wraps complex ideas in a narrative that is both accessible and engaging, challenging viewers to reflect on their own lives and beliefs.",
+      last_update: '2024-05-03',
+      author_id: 1,
+      author_name: 'AsukaFan',
+      category: 'Cultural Impact',
+      tags: 'innovation, storytelling, anime, psychology, philosophy, mecha',
+    },
+    {
+      title: 'The Relevance of Evangelion in Modern Media',
+      content:
+        "More than two decades later, Neon Genesis Evangelion continues to influence modern media with its innovative storytelling and exploration of complex themes. The series initially launched in the mid-1990s and quickly became a cornerstone of anime culture, influencing countless creators and spawning a variety of adaptations and merchandise. Evangelion is not just a show about giant robots fighting monstrous entities; it's a deep psychological exploration of its characters, each struggling with personal traumas and existential crises. This depth is what sets Evangelion apart and makes it resonate with a diverse audience, even years after its initial release.\n\nThe series also delves into philosophical and religious symbolism, adding layers of meaning that invite viewers to interpret and question the narrative and its themes. From existential philosophy to Freudian psychology, Evangelion wraps complex ideas in a narrative that is both accessible and engaging, challenging viewers to reflect on their own lives and beliefs.",
+      last_update: '2024-05-03',
+      author_id: 1,
+      author_name: 'AsukaFan',
+      category: 'Cultural Impact',
+      tags: 'innovation, storytelling, anime, psychology, philosophy, mecha',
+    },
   ]
+
+  //Para el popUp
+  const [isOpen, setIsOpen] = useState(false)
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen)
+  }
+
+  //Formateo de tags
+  const [tags, setTags] = useState('')
+
+  const handleTagsChange = (event) => {
+    setTags(event.target.value)
+  }
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+    const formattedTags = tags.split(/\s*,\s*/).join(',')
+    console.log('Formatted Tags:', formattedTags)
+    console.log('Form Submitted!')
+    setIsOpen(false) // Cierra el Popup después del envío
+    // Aquí `formattedTags` a tu servidor
+    // Aquí logica para enviar el form del post
+  }
+
+  //Area expansible del contenido
+  const [content, setContent] = useState('')
+
+  const handleContentChange = (event) => {
+    setContent(event.target.value)
+  }
+
+  //Para los posts
+  const [selectedPost, setSelectedPost] = useState(null)
+
+  const openPopup = (post) => {
+    setSelectedPost(post)
+  }
+
+  const closePopup = () => {
+    setSelectedPost(null)
+  }
 
   return (
     <div className="posts">
@@ -197,12 +292,43 @@ export const Posts = () => {
         <div className="title__bar">
           <h1>My posts of evangelion!</h1>
         </div>
-        <div className="info__home">
-          <div class="content-section">
+        <div className="info__posts">
+          <Button text="Create Post" onClick={togglePopup} />
+          {isOpen && (
+            <Popup onClose={togglePopup} className="create__post">
+              <form className="form" onSubmit={handleFormSubmit}>
+                <h2>Create a New Post</h2>
+                <label htmlFor="title">Title</label>
+                <input type="text" placeholder="Title" />
+                <label htmlFor="title">Content</label>
+                <AutoExpandingTextarea
+                  placeholder="Enter your content here..."
+                  value={content}
+                  onChange={handleContentChange}
+                />
+                <label htmlFor="title">Category</label>
+                <input type="text" placeholder="Category" />
+                <label htmlFor="title">Tags</label>
+                <input
+                  type="text"
+                  placeholder="Enter tags separated by commas"
+                  value={tags}
+                  onChange={handleTagsChange}
+                />
+                <button type="submit" className="button__popup">
+                  Create Post
+                </button>
+              </form>
+            </Popup>
+          )}
+          <div className="content-section">
             <div className="all_posts">
               {postData.map((post, index) => (
-                <Post key={index} {...post} />
+                <div key={index} onClick={() => openPopup(post)}>
+                  <Post {...post} />
+                </div>
               ))}
+              {selectedPost && <PopupDetail post={selectedPost} onClose={closePopup} />}
             </div>
           </div>
         </div>
