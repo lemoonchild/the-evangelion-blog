@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Link } from 'react-router-dom'
 import { RiUser3Fill } from 'react-icons/ri'
 import { RiLockPasswordFill } from 'react-icons/ri'
 import { MdEmail } from 'react-icons/md'
+
+import { useAuth } from '../hooks/autProvider.jsx'
+
 import './loginRegister.css'
 
 export const Login = () => {
+  const { login } = useAuth()
+
   const [username, setUsername] = useState('')
   const [password_md5, setPassword] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
@@ -26,6 +30,7 @@ export const Login = () => {
     const data = await response.json()
     if (response.status === 200) {
       localStorage.setItem('token', data.token)
+      login(data.token, { username: data.username, role: data.role })
       console.log(successMessage)
       navigate('/blog')
     } else {
@@ -64,7 +69,8 @@ export const Login = () => {
           <button type="submit">Login!</button>
 
           <div className="register__link">
-            <p onClick={() => navigate('/register')}>Don't have an account? Register here!</p>
+            <h3>Don't have an account?</h3>
+            <p onClick={() => navigate('/register')}>Register here!</p>
           </div>
         </form>
       </div>
@@ -90,9 +96,10 @@ export const Register = () => {
       body: JSON.stringify({ username, email, password_md5 }),
     })
     const data = await response.json()
-    if (response.status === 201) {
+    if (response.status === 200) {
+      setSuccessMessage('Registration successful! Redirecting to login...')
       setTimeout(() => {
-        navigate('/login') // Redirige al login después del registro exitoso.
+        navigate('/login')
       }, 3000)
     } else {
       alert(data.message)
@@ -144,7 +151,8 @@ export const Register = () => {
           <button type="submit">Register!</button>
 
           <div className="register__link">
-            <p onClick={() => navigate('/login')}>Already have an account? Login here!</p>
+            <h3>Already have an account?</h3>
+            <p onClick={() => navigate('/login')}>Login here!</p>
           </div>
         </form>
       </div>

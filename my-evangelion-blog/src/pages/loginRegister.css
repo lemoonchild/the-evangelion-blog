@@ -120,6 +120,18 @@
   margin-right: 4px;
 }
 
+.register__link h3 {
+  font-weight: lighter;
+  font-size: 18px;
+}
+.register__link p {
+  font-size: 18px;
+}
+.register__link p:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .login button {
   font-family: 'OffBit Trial', sans-serif;
   position: relative;
