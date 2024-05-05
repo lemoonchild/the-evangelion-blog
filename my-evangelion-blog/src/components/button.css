@@ -1,0 +1,44 @@
+@font-face {
+  src: url(https://dl.dropbox.com/s/1479f8x52y3z5u4/rainyhearts.ttf);
+  font-family: hearts;
+}
+
+.button {
+  font-family: 'hearts', sans-serif;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-image: url('https://i.pinimg.com/originals/8a/dc/49/8adc4938fa01a4da17246061dbf61585.gif');
+  margin-top: 20px;
+  margin-bottom: -20px;
+  color: #ffffff;
+  outline: none;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: #f0f0f0;
+  background-image: url('https://i.pinimg.com/originals/6e/bf/98/6ebf98be854ca6294468260c52709cb5.gif');
+  color: #ffffff;
+}
+
+.char {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.button:hover .char {
+  animation: jump 0.6s ease;
+  animation-delay: calc(var(--char-index) * 0.1s);
+}
+
+@keyframes jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
