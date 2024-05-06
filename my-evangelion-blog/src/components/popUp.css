@@ -69,6 +69,10 @@
   color: #666;
 }
 
+.popup__2 {
+  font-size: 18px;
+}
+
 .popup-actions {
   margin-bottom: 40px;
 }

@@ -4,6 +4,8 @@ import './popUp.css'
 import AutoExpandingTextarea from '../components/expandingArea.jsx'
 import Button from '../components/button.jsx'
 
+import { formatDateTime } from '../components/formatDateTime.jsx'
+
 export const Popup = ({ onClose, children }) => {
   return (
     <div className="popup">
@@ -68,7 +70,8 @@ export const PopupDetail = ({ post, onClose }) => {
   const [showConfirm, setShowConfirm] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
 
-  const displayedTags = post.tags.split(', ').map((tag) => tag.trim())
+  const displayedTags = post.tags.split(',').map((tag) => tag.trim())
+  const formattedUpdateAt = formatDateTime(post.updated_at)
 
   const handleUpdate = () => {
     setShowEdit(true)
@@ -86,7 +89,6 @@ export const PopupDetail = ({ post, onClose }) => {
 
   const handleSaveChanges = (updatedPost) => {
     console.log('Updated post', updatedPost)
-    // Aquí agregarías la lógica para actualizar el post en el estado o en la base de datos
     setShowEdit(false)
   }
 
@@ -126,7 +128,7 @@ export const PopupDetail = ({ post, onClose }) => {
                 </div>
               </div>
               <div>
-                <strong>Last Updated:</strong> {post.last_update}
+                <strong>Last Updated:</strong> {formattedUpdateAt}
               </div>
             </div>
           </div>
