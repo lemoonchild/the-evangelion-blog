@@ -2,8 +2,6 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext(null)
 
-export const useAuth = () => useContext(AuthContext)
-
 export const AuthProvider = ({ children }) => {
   const [authData, setAuthData] = useState({ token: null, user: null })
 
@@ -22,6 +20,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('token', token)
     localStorage.setItem('user', JSON.stringify(user))
     setAuthData({ token, user })
+    console.log(user)
   }
 
   const logout = () => {
@@ -39,3 +38,5 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={authContextValue}>{children}</AuthContext.Provider>
 }
+
+export const useAuth = () => useContext(AuthContext)
