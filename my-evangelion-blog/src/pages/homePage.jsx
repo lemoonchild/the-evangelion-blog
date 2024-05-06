@@ -12,7 +12,7 @@ import { useAuth } from '../hooks/autProvider.jsx'
 const Blog = () => {
   const navigate = useNavigate()
 
-  const { user, logout } = useAuth()
+  const { user, logout, authToken } = useAuth()
   const username = user ? user.username : 'Rei'
   const role = user ? user.role : 'EVA-01 PILOT'
 

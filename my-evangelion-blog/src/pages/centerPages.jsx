@@ -161,7 +161,7 @@ export const About = () => {
 }
 
 export const Posts = () => {
-  const { user } = useAuth()
+  const { user, authToken } = useAuth()
 
   const [isOpen, setIsOpen] = useState(false)
   const [tags, setTags] = useState('')
@@ -215,6 +215,7 @@ export const Posts = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
         },
         body: JSON.stringify(newPost),
       })
@@ -233,7 +234,12 @@ export const Posts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/posts')
+        const response = await fetch('http://localhost:5000/posts', {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        })
+
         const data = await response.json()
         if (response.status === 200) {
           setPostData(data.data)

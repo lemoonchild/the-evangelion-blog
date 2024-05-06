@@ -6,6 +6,8 @@ import Button from '../components/button.jsx'
 
 import { formatDateTime } from '../components/formatDateTime.jsx'
 
+import { useAuth } from '../hooks/autProvider.jsx'
+
 export const Popup = ({ onClose, children }) => {
   return (
     <div className="popup">
@@ -69,6 +71,7 @@ export const EditPostPopup = ({ post, onClose, onSave }) => {
 export const PopupDetail = ({ post, onClose }) => {
   const [showConfirm, setShowConfirm] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
+  const { user } = useAuth()
 
   const displayedTags = post.tags.split(',').map((tag) => tag.trim())
   const formattedUpdateAt = formatDateTime(post.updated_at)
@@ -92,6 +95,9 @@ export const PopupDetail = ({ post, onClose }) => {
     setShowEdit(false)
   }
 
+  //Verificación de rol y usuario
+  const canEdit = user.id === post.author_id || user.role === 'Administrador'
+
   return (
     <div className="popup">
       <div className="popup__inner__post">
@@ -99,10 +105,12 @@ export const PopupDetail = ({ post, onClose }) => {
           X
         </button>
         <div className="popup-actions">
-          <div className="buttons__action">
-            <Button text="Update Post" onClick={handleUpdate} />
-            <Button text="Delete Post" onClick={() => setShowConfirm(true)} />
-          </div>
+          {canEdit && (
+            <div className="buttons__action">
+              <Button text="Update Post" onClick={handleUpdate} />
+              <Button text="Delete Post" onClick={() => setShowConfirm(true)} />
+            </div>
+          )}
         </div>
         <div className="popup-content">
           <h1>{post.title}</h1>
