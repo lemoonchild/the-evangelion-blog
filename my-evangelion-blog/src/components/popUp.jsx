@@ -22,17 +22,48 @@ export const Popup = ({ onClose, children }) => {
 }
 
 export const EditPostPopup = ({ post, onClose, onSave }) => {
-  // Estados para cada propiedad editable del post
+  //Auth del token
+  const authToken = useAuth().authToken
+
   const [title, setTitle] = useState(post.title)
   const [content, setContent] = useState(post.content)
   const [category, setCategory] = useState(post.category)
   const [tags, setTags] = useState(post.tags)
 
-  const handleSubmit = (event) => {
+  console.log(post.id)
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    // Lógica para guardar los cambios, puede involucrar llamar a una API
-    onSave({ id: post.id, title, content, category, tags })
-    onClose() // Cierra el popup después de guardar
+    // Construye el objeto con los datos actualizados
+    const updatedPost = {
+      title: title,
+      content: content,
+      category: category,
+      tags: tags,
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5000/post/${post.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify(updatedPost),
+      })
+      const responseData = await response.json()
+      console.log(updatedPost)
+      if (response.ok) {
+        console.log('Post updated successfully:', responseData)
+        onSave(updatedPost)
+        onClose() // Cierra el popup después de guardar
+      } else {
+        throw new Error('Failed to update post' || responseData.message)
+      }
+    } catch (error) {
+      console.error('Error updating post:', error)
+      alert('Failed to update post: ' + error.message)
+    }
   }
 
   return (
@@ -68,10 +99,12 @@ export const EditPostPopup = ({ post, onClose, onSave }) => {
   )
 }
 
-export const PopupDetail = ({ post, onClose }) => {
+export const PopupDetail = ({ post: initialPost, onClose }) => {
+  const [post, setPost] = useState(initialPost)
+
   const [showConfirm, setShowConfirm] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
-  const { user } = useAuth()
+  const { user, authToken } = useAuth()
 
   const displayedTags = post.tags.split(',').map((tag) => tag.trim())
   const formattedUpdateAt = formatDateTime(post.updated_at)
@@ -80,23 +113,44 @@ export const PopupDetail = ({ post, onClose }) => {
     setShowEdit(true)
   }
 
+  //Verificación de rol y usuario
+  const actionUser = user.id === post.author_id || user.role === 'Administrador'
+
   const paragraphs = post.content
     .split('\n')
     .map((paragraph, index) => <p key={index}>{paragraph}</p>)
 
-  const handleDelete = () => {
-    console.log('Delete post', post.id)
-    setShowConfirm(false) // Cierra el diálogo de confirmación después de confirmar
-    onClose() // Cierra el popup del post
+  const handleConfirmDelete = async () => {
+    if (actionUser) {
+      try {
+        const response = await fetch(`http://localhost:5000/post/${post.id}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        })
+        const data = await response.json()
+        if (response.ok) {
+          console.log('Post deleted successfully:', data)
+          onClose() // Cierra el popup después de borrar
+        } else {
+          throw new Error(data.message || 'Failed to delete post')
+        }
+      } catch (error) {
+        console.error('Error deleting post:', error)
+        alert('Failed to delete post: ' + error.message)
+      }
+      setShowConfirm(false) // Cierra el diálogo de confirmación
+    } else {
+      alert('You do not have permission to delete this post.')
+    }
   }
 
   const handleSaveChanges = (updatedPost) => {
     console.log('Updated post', updatedPost)
-    setShowEdit(false)
+    setPost(updatedPost)
+    onClose() // Cierra el popup de edición
   }
-
-  //Verificación de rol y usuario
-  const canEdit = user.id === post.author_id || user.role === 'Administrador'
 
   return (
     <div className="popup">
@@ -105,7 +159,7 @@ export const PopupDetail = ({ post, onClose }) => {
           X
         </button>
         <div className="popup-actions">
-          {canEdit && (
+          {actionUser && (
             <div className="buttons__action">
               <Button text="Update Post" onClick={handleUpdate} />
               <Button text="Delete Post" onClick={() => setShowConfirm(true)} />
@@ -145,7 +199,7 @@ export const PopupDetail = ({ post, onClose }) => {
           <div className="confirmation-popup">
             <p>Are you sure you want to delete this post?</p>
             <div className="buttons__action">
-              <button onClick={handleDelete} className="button__popup">
+              <button onClick={handleConfirmDelete} className="button__popup">
                 Yes!
               </button>
               <button onClick={() => setShowConfirm(false)} className="button__popup">
@@ -155,13 +209,7 @@ export const PopupDetail = ({ post, onClose }) => {
           </div>
         )}
 
-        {showEdit && (
-          <EditPostPopup
-            post={post}
-            onClose={() => setShowEdit(false)}
-            onSave={handleSaveChanges}
-          />
-        )}
+        {showEdit && <EditPostPopup post={post} onClose={onClose} onSave={handleSaveChanges} />}
       </div>
     </div>
   )
