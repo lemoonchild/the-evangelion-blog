@@ -30,7 +30,7 @@ export const Login = () => {
     const data = await response.json()
     if (response.status === 200) {
       localStorage.setItem('token', data.token)
-      login(data.token, { username: data.username, role: data.role })
+      login(data.token, { username: data.username, role: data.role, id: data.id })
       console.log(successMessage)
       navigate('/blog')
     } else {
