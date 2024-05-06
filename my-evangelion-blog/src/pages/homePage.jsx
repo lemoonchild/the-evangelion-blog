@@ -10,11 +10,11 @@ import { Home, About, Posts } from '../pages/centerPages.jsx'
 import { useAuth } from '../hooks/autProvider.jsx'
 
 const Blog = () => {
-  const username = useAuth().user ? useAuth().user.username : 'Rei'
-  const logout = useAuth().logout
-  const role = useAuth().role ? useAuth().user.role : 'EVA-01 PILOT'
-
   const navigate = useNavigate()
+
+  const { user, logout } = useAuth()
+  const username = user ? user.username : 'Rei'
+  const role = user ? user.role : 'EVA-01 PILOT'
 
   const [activeTab, setActiveTab] = useState('home')
 
