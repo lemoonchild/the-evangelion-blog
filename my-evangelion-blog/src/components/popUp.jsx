@@ -8,6 +8,8 @@ import { formatDateTime } from '../components/formatDateTime.jsx'
 
 import { useAuth } from '../hooks/autProvider.jsx'
 
+import NotificationManager from './notification.jsx'
+
 export const Popup = ({ onClose, children }) => {
   return (
     <div className="popup">
@@ -54,10 +56,13 @@ export const EditPostPopup = ({ post, onClose, onSave }) => {
       const responseData = await response.json()
       console.log(updatedPost)
       if (response.ok) {
+        NotificationManager.notify('Post updated successfully!', 'success')
         console.log('Post updated successfully:', responseData)
         onSave(updatedPost)
         onClose() // Cierra el popup después de guardar
       } else {
+        NotificationManager.notify('The post fail to be updated!', 'error')
+
         throw new Error('Failed to update post' || responseData.message)
       }
     } catch (error) {
@@ -131,9 +136,11 @@ export const PopupDetail = ({ post: initialPost, onClose }) => {
         })
         const data = await response.json()
         if (response.ok) {
+          NotificationManager.notify('Post deleted successfully!', 'success')
           console.log('Post deleted successfully:', data)
           onClose() // Cierra el popup después de borrar
         } else {
+          NotificationManager.notify('The post fail to be deleted!', 'error')
           throw new Error(data.message || 'Failed to delete post')
         }
       } catch (error) {

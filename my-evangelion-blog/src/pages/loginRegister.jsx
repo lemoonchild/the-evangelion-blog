@@ -7,6 +7,8 @@ import { MdEmail } from 'react-icons/md'
 
 import { useAuth } from '../hooks/autProvider.jsx'
 
+import NotificationManager from '../components/notification.jsx'
+
 import './loginRegister.css'
 
 export const Login = () => {
@@ -29,11 +31,14 @@ export const Login = () => {
     })
     const data = await response.json()
     if (response.status === 200) {
+      NotificationManager.notify('Login successful!', 'success')
+
       localStorage.setItem('token', data.token)
       login(data.token, { username: data.username, role: data.role, id: data.id })
       console.log(successMessage)
       navigate('/blog')
     } else {
+      NotificationManager.notify('The user or the password is incorrect!', 'error')
       alert(data.message)
     }
   }
@@ -97,11 +102,13 @@ export const Register = () => {
     })
     const data = await response.json()
     if (response.status === 200) {
+      NotificationManager.notify('Registration successful! Redirecting to login...', 'success')
       setSuccessMessage('Registration successful! Redirecting to login...')
       setTimeout(() => {
         navigate('/login')
       }, 3000)
     } else {
+      NotificationManager.notify('The user or the email is already used!', 'error')
       alert(data.message)
     }
   }

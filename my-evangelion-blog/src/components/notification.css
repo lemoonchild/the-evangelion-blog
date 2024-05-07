@@ -1,0 +1,24 @@
+@font-face {
+  src: url(https://dl.dropbox.com/s/1479f8x52y3z5u4/rainyhearts.ttf);
+  font-family: hearts;
+}
+
+.Toastify__toast--success {
+  background-color: #fff;
+  color: #000;
+  font-family: 'hearts', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Toastify__toast--error {
+  background-color: darkred;
+  color: white;
+  font-family: 'hearts', sans-serif;
+}
+
+.Toastify__toast--info {
+  background-color: #5a4b84;
+  color: white;
+  font-family: 'hearts', sans-serif;
+}

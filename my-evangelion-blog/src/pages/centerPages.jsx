@@ -7,6 +7,7 @@ import { Popup, PopupDetail } from '../components/popUp.jsx'
 import AutoExpandingTextarea from '../components/expandingArea.jsx'
 
 import { useAuth } from '../hooks/autProvider.jsx'
+import NotificationManager from '../components/notification.jsx'
 
 import './centerPages.css'
 
@@ -221,13 +222,17 @@ export const Posts = () => {
       })
       const responseData = await response.json()
       if (response.ok) {
-        console.log('Post creado:', responseData)
+        NotificationManager.notify('Post created successfully!', 'success')
+
+        console.log('Post created:', responseData)
         setIsOpen(false)
       } else {
-        throw new Error(responseData.message || 'Error al crear el post')
+        NotificationManager.notify('The post failed to be created!', 'error')
+
+        throw new Error(responseData.message || 'Error creating post.')
       }
     } catch (error) {
-      console.error('Error al crear el post:', error)
+      console.error('Error creating post:', error)
     }
   }
 

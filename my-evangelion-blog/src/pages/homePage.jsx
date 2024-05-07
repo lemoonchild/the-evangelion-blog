@@ -13,7 +13,7 @@ const Blog = () => {
   const navigate = useNavigate()
 
   const { user, logout, authToken } = useAuth()
-  const username = user ? user.username : 'Rei'
+  const username = user ? user.username : 'Rei Guest'
   const role = user ? user.role : 'EVA-01 PILOT'
 
   const [activeTab, setActiveTab] = useState('home')
@@ -25,7 +25,7 @@ const Blog = () => {
   const handleLogout = () => {
     if (authToken) {
       logout()
-      navigate('/login')
+      navigate('/blog')
     } else {
       navigate('/login')
     }
