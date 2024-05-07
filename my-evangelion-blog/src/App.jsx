@@ -11,7 +11,7 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Navigate replace to="/login" />} />
+          <Route path="/" element={<Navigate replace to="/blog" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/blog" element={<BlogMain action="blog" />} />

@@ -23,12 +23,12 @@ const Blog = () => {
   }
 
   const handleLogout = () => {
-    logout()
-    navigate('/login')
-  }
-
-  const handleLogin = () => {
-    navigate('/login')
+    if (authToken) {
+      logout()
+      navigate('/login')
+    } else {
+      navigate('/login')
+    }
   }
 
   return (
@@ -54,7 +54,9 @@ const Blog = () => {
                 help!
               </a>
             </p>
-            <p onClick={handleLogout}>Logout</p>
+            <p onClick={authToken ? handleLogout : () => navigate('/login')}>
+              {authToken ? 'Logout' : 'Login'}
+            </p>
           </div>
         </div>
 
