@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense, lazy } from 'react'
 
 import Marquee from '../components/marquee.jsx'
-import Post from '../components/post.jsx'
 import Button from '../components/button.jsx'
 import { Popup, PopupDetail } from '../components/popUp.jsx'
 import AutoExpandingTextarea from '../components/expandingArea.jsx'
 
 import { useAuth } from '../hooks/autProvider.jsx'
 import NotificationManager from '../components/notification.jsx'
+
+const Post = lazy(() => import('../components/post.jsx'))
 
 import './centerPages.css'
 
@@ -172,7 +173,7 @@ export const Posts = () => {
 
   const [loading, setLoading] = useState(false)
   const [isEmpty, setIsEmpty] = useState(false)
-  const [initialLoad, setInitialLoad] = useState(true)
+  const [error, setError] = useState(false)
 
   const togglePopup = () => {
     setIsOpen(!isOpen)
@@ -195,7 +196,9 @@ export const Posts = () => {
   }
 
   const fetchPosts = async () => {
-    if (initialLoad) setLoading(true)
+    setLoading(true)
+    setError(false)
+    setIsEmpty(false)
     try {
       const response = await fetch('http://localhost:5000/posts')
       const data = await response.json()
@@ -203,15 +206,14 @@ export const Posts = () => {
         setPostData(data.data)
         setIsEmpty(data.data.length === 0)
       } else {
+        ;<p>Failed to fetch posts</p>
         console.error('Failed to fetch posts:', data.message)
       }
     } catch (error) {
       console.error('Error fetching posts:', error)
+      setError(true)
     } finally {
-      if (initialLoad) {
-        setLoading(false)
-        setInitialLoad(false)
-      }
+      setLoading(false)
     }
   }
 
@@ -236,7 +238,7 @@ export const Posts = () => {
     }
 
     if (!newPost.title || !newPost.content || !newPost.category) {
-      console.error('Please fill in all fields.')
+      NotificationManager.notify('Please fill in all fields!', 'error')
       return
     }
 
@@ -252,77 +254,105 @@ export const Posts = () => {
       const responseData = await response.json()
       if (response.ok) {
         NotificationManager.notify('Post created successfully!', 'success')
-
-        console.log('Post created:', responseData)
         setIsOpen(false)
       } else {
         NotificationManager.notify('The post failed to be created!', 'error')
-
-        throw new Error(responseData.message || 'Error creating post.')
       }
     } catch (error) {
-      console.error('Error creating post:', error)
+      NotificationManager.notify('The post failed to be created!', 'error')
     }
     fetchPosts()
   }
 
   return (
     <div className="posts">
-      <div className="title">
-        <h1>Welcome to my posts</h1>
-      </div>
-
-      <div className="my__posts">
-        <div className="title__bar">
-          <h1>My posts of evangelion!</h1>
+      <Suspense fallback={<div>Loading posts...</div>}>
+        <Marquee text="The fate of destruction is also the joy of rebirth. - Gendo Ikari" />
+        <div className="title">
+          <h1>Welcome to my posts</h1>
         </div>
-        <div className="info__posts">
-          <Button text="Create Post" onClick={togglePopup} />
-          {isOpen && (
-            <Popup onClose={togglePopup} className="create__post">
-              <form className="form" onSubmit={handleFormSubmit}>
-                <h2>Create a New Post</h2>
-                <label htmlFor="title">Title</label>
-                <input type="text" placeholder="Title" />
-                <label htmlFor="title">Content</label>
-                <AutoExpandingTextarea
-                  placeholder="Enter your content here..."
-                  value={content}
-                  onChange={handleContentChange}
-                />
-                <label htmlFor="title">Category</label>
-                <input type="text" placeholder="Category" />
-                <label htmlFor="title">Tags</label>
-                <input
-                  type="text"
-                  placeholder="Enter tags separated by commas"
-                  value={tags}
-                  onChange={handleTagsChange}
-                />
-                <button type="submit" className="button__popup">
-                  Create Post
-                </button>
-              </form>
-            </Popup>
-          )}
-          <div className="content-section">
-            <div className="all_posts">
-              {postData.length > 0 ? (
-                postData.map((post, index) => (
-                  <div key={index} onClick={() => openPopup(post)}>
-                    <Post {...post} />
+
+        <div className="my__posts">
+          <div className="title__bar">
+            <h1>My posts of evangelion!</h1>
+          </div>
+          <div className="info__posts">
+            <Button text="Create Post" onClick={togglePopup} />
+            {isOpen && (
+              <Popup onClose={togglePopup} className="create__post">
+                <form className="form" onSubmit={handleFormSubmit}>
+                  <h2>Create a New Post</h2>
+                  <label htmlFor="title">Title</label>
+                  <input type="text" placeholder="Title" />
+                  <label htmlFor="title">Content</label>
+                  <AutoExpandingTextarea
+                    placeholder="Enter your content here..."
+                    value={content}
+                    onChange={handleContentChange}
+                  />
+                  <label htmlFor="title">Category</label>
+                  <input type="text" placeholder="Category" />
+                  <label htmlFor="title">Tags</label>
+                  <input
+                    type="text"
+                    placeholder="Enter tags separated by commas"
+                    value={tags}
+                    onChange={handleTagsChange}
+                  />
+                  <button type="submit" className="button__popup">
+                    Create Post
+                  </button>
+                </form>
+              </Popup>
+            )}
+            <div className="content-section">
+              <div className="all_posts">
+                {loading && (
+                  <div>
+                    <p className="message">Loading posts...</p>
+                    <img
+                      src="https://media.tenor.com/HlX_Yi1keVEAAAAi/rei-rei-ayanami.gif"
+                      alt="Loading"
+                    />
                   </div>
-                ))
-              ) : (
-                <p>No posts available</p>
-              )}
-              {selectedPost && (
-                <PopupDetail post={selectedPost} onClose={closePopup} onPostsUpdated={fetchPosts} />
-              )}
+                )}
+                {!loading && error && (
+                  <div>
+                    <p className="message">Error loading posts. Please try again later.</p>
+                    <img
+                      src="https://i.pinimg.com/736x/f9/b5/e5/f9b5e5fcfac30d1a19271972a746a6f4.jpg"
+                      alt="Error"
+                    />
+                  </div>
+                )}
+                {!loading && !error && !isEmpty && postData.length === 0 && (
+                  <div>
+                    <p className="message">No posts available, sorry!</p>
+                    <img
+                      src="https://i.pinimg.com/564x/b5/cb/e5/b5cbe59d332134afef989cbeec16efd5.jpg"
+                      alt="No Posts"
+                    />
+                  </div>
+                )}
+                {!loading &&
+                  !error &&
+                  postData.map((post, index) => (
+                    <div key={index} onClick={() => openPopup(post)}>
+                      <Post {...post} />
+                    </div>
+                  ))}
+                {selectedPost && (
+                  <PopupDetail
+                    post={selectedPost}
+                    onClose={closePopup}
+                    onPostsUpdated={fetchPosts}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Suspense>
     </div>
   )
 }

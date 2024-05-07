@@ -132,28 +132,28 @@ export const PopupDetail = ({ post: initialPost, onClose, onPostsUpdated }) => {
         })
         const data = await response.json()
         if (response.ok) {
+          await onPostsUpdated()
+          onClose()
           NotificationManager.notify('Post deleted successfully!', 'success')
-          console.log('Post deleted successfully:', data)
-          onClose() // Cierra el popup después de borrar
-          onPostsUpdated()
         } else {
           NotificationManager.notify('The post fail to be deleted!', 'error')
           throw new Error(data.message || 'Failed to delete post')
         }
       } catch (error) {
-        console.error('Error deleting post:', error)
         NotificationManager.notify('Failed to delete post: ' + error.message, 'error')
       }
-      setShowConfirm(false) // Cierra el diálogo de confirmación
+      setShowConfirm(false)
+      setLoading(false)
     } else {
       NotificationManager.notify('You do not have permission to delete this post.', 'error')
     }
   }
+
   const handleSaveChanges = (updatedPost) => {
     console.log('Updated post', updatedPost)
     setPost(updatedPost)
-    onClose() // Cierra el popup de edición
-    onPostsUpdated() // Llamar a fetchPosts() para actualizar la lista de posts
+    onClose()
+    onPostsUpdated()
   }
 
   return (
