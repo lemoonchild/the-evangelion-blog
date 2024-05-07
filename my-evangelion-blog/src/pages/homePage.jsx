@@ -27,6 +27,10 @@ const Blog = () => {
     navigate('/login')
   }
 
+  const handleLogin = () => {
+    navigate('/login')
+  }
+
   return (
     <div className="blog">
       <div className="all__blog">

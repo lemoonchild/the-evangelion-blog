@@ -234,11 +234,7 @@ export const Posts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/posts', {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        })
+        const response = await fetch('http://localhost:5000/posts')
 
         const data = await response.json()
         if (response.status === 200) {
