@@ -307,27 +307,20 @@ export const Posts = () => {
           )}
           <div className="content-section">
             <div className="all_posts">
-              {loading ? (
-                <div className="loading-state">
-                  <img
-                    src="https://media1.tenor.com/m/t5DVR8VLLpAAAAAC/artisan-liga.gif"
-                    alt="Loading..."
-                  />
-                </div>
-              ) : isEmpty ? (
-                <p>No posts available</p>
-              ) : (
+              {postData.length > 0 ? (
                 postData.map((post, index) => (
                   <div key={index} onClick={() => openPopup(post)}>
                     <Post {...post} />
                   </div>
                 ))
+              ) : (
+                <p>No posts available</p>
               )}
               {selectedPost && (
                 <PopupDetail post={selectedPost} onClose={closePopup} onPostsUpdated={fetchPosts} />
               )}
             </div>
-          </div>{' '}
+          </div>
         </div>
       </div>
     </div>

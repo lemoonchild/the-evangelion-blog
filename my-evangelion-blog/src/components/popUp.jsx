@@ -23,7 +23,7 @@ export const Popup = ({ onClose, children }) => {
   )
 }
 
-export const EditPostPopup = ({ post, onClose, onSave, onPostsUpdated }) => {
+export const EditPostPopup = ({ post, onClose, onSave }) => {
   //Auth del token
   const authToken = useAuth().authToken
 
@@ -31,10 +31,6 @@ export const EditPostPopup = ({ post, onClose, onSave, onPostsUpdated }) => {
   const [content, setContent] = useState(post.content)
   const [category, setCategory] = useState(post.category)
   const [tags, setTags] = useState(post.tags)
-
-  const handleDelayedClose = () => {
-    setTimeout(onClose, 2000)
-  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -59,9 +55,6 @@ export const EditPostPopup = ({ post, onClose, onSave, onPostsUpdated }) => {
       if (response.ok) {
         NotificationManager.notify('Post updated successfully!', 'success')
         onSave(updatedPost)
-        onPostsUpdated()
-
-        handleDelayedClose()
       } else {
         NotificationManager.notify('The post fail to be updated!', 'error')
         throw new Error('Failed to update post' || responseData.message)
@@ -97,7 +90,7 @@ export const EditPostPopup = ({ post, onClose, onSave, onPostsUpdated }) => {
         <label htmlFor="tags">Tags</label>
         <input id="tags" type="text" value={tags} onChange={(e) => setTags(e.target.value)} />
 
-        <button type="submit" className="button__popup" onClick={onPostsUpdated}>
+        <button type="submit" className="button__popup">
           Save Changes
         </button>
       </form>
@@ -113,10 +106,6 @@ export const PopupDetail = ({ post: initialPost, onClose, onPostsUpdated }) => {
   const [showEdit, setShowEdit] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const [postData, setPostData] = useState([])
-  const [isEmpty, setIsEmpty] = useState(false)
-  const [initialLoad, setInitialLoad] = useState(true)
-
   const displayedTags = post.tags.split(',').map((tag) => tag.trim())
   const formattedUpdateAt = formatDateTime(post.updated_at)
 
@@ -130,27 +119,6 @@ export const PopupDetail = ({ post: initialPost, onClose, onPostsUpdated }) => {
   const paragraphs = post.content
     .split('\n')
     .map((paragraph, index) => <p key={index}>{paragraph}</p>)
-
-  const fetchPosts = async () => {
-    if (initialLoad) setLoading(true)
-    try {
-      const response = await fetch('http://localhost:5000/posts')
-      const data = await response.json()
-      if (response.status === 200) {
-        setPostData(data.data)
-        setIsEmpty(data.data.length === 0)
-      } else {
-        console.error('Failed to fetch posts:', data.message)
-      }
-    } catch (error) {
-      console.error('Error fetching posts:', error)
-    } finally {
-      if (initialLoad) {
-        setLoading(false)
-        setInitialLoad(false)
-      }
-    }
-  }
 
   const handleDeletePost = async () => {
     if (actionUser) {
@@ -181,11 +149,11 @@ export const PopupDetail = ({ post: initialPost, onClose, onPostsUpdated }) => {
       NotificationManager.notify('You do not have permission to delete this post.', 'error')
     }
   }
-
   const handleSaveChanges = (updatedPost) => {
     console.log('Updated post', updatedPost)
     setPost(updatedPost)
     onClose() // Cierra el popup de edición
+    onPostsUpdated() // Llamar a fetchPosts() para actualizar la lista de posts
   }
 
   return (
@@ -249,14 +217,7 @@ export const PopupDetail = ({ post: initialPost, onClose, onPostsUpdated }) => {
           </div>
         )}
 
-        {showEdit && (
-          <EditPostPopup
-            post={post}
-            onClose={onClose}
-            onSave={handleSaveChanges}
-            onPostsUpdated={fetchPosts}
-          />
-        )}
+        {showEdit && <EditPostPopup post={post} onClose={onClose} onSave={handleSaveChanges} />}
       </div>
     </div>
   )
