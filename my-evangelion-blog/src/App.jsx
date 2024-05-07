@@ -9,7 +9,7 @@ import AdminPage from './pages/Admin/adminPage.jsx'
 
 import './App.css'
 
-function App() {
+function App () {
   return (
     <AuthProvider>
       <Router>

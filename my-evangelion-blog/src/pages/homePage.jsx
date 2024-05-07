@@ -9,12 +9,13 @@ import { Home, About, Posts } from '../pages/centerPages.jsx'
 
 import { useAuth } from '../hooks/autProvider.jsx'
 
+import PropTypes from 'prop-types'
+
 const Blog = () => {
   const navigate = useNavigate()
 
   const { user, logout, authToken } = useAuth()
   const username = user ? user.username : 'Rei Guest'
-  const role = user ? user.role : 'EVA-01 PILOT'
 
   const [activeTab, setActiveTab] = useState('home')
 
@@ -180,6 +181,16 @@ const Blog = () => {
 
 const BlogMain = ({ action }) => {
   return <div>{action === 'blog' && <Blog />}</div>
+}
+
+// PropTypes para Blog
+Blog.propTypes = {
+  action: PropTypes.string.isRequired
+}
+
+// PropTypes para BlogMain
+BlogMain.propTypes = {
+  action: PropTypes.string.isRequired
 }
 
 export default BlogMain

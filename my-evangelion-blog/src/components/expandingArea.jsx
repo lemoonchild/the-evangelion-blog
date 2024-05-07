@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
 
 const AutoExpandingTextarea = ({ placeholder, value, onChange }) => {
   const textareaRef = useRef(null)
@@ -21,3 +22,9 @@ const AutoExpandingTextarea = ({ placeholder, value, onChange }) => {
 }
 
 export default AutoExpandingTextarea
+
+AutoExpandingTextarea.propTypes = {
+  placeholder: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+}

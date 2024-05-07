@@ -1,3 +1,4 @@
+import React from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -16,7 +17,7 @@ const NotificationManager = {
         toast.info(message, { position: 'top-right', autoClose: 5000 })
         break
     }
-  },
+  }
 }
 
 export const ToastNotification = () => {

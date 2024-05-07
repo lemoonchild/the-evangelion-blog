@@ -2,7 +2,9 @@ import React from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/autProvider.jsx'
 
-export default function ProtectedRoute({ children, roles }) {
+import PropTypes from 'prop-types'
+
+export default function ProtectedRoute ({ children, roles }) {
   const { user } = useAuth()
 
   if (!user) {
@@ -16,4 +18,9 @@ export default function ProtectedRoute({ children, roles }) {
   }
 
   return children
+}
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+  roles: PropTypes.arrayOf(PropTypes.string).isRequired
 }

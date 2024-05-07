@@ -1,4 +1,6 @@
+import React from 'react'
 import { formatDateTime } from '../components/formatDateTime.jsx'
+import PropTypes from 'prop-types'
 
 import './post.css'
 
@@ -53,6 +55,15 @@ const truncateText = (text, maxWords) => {
     return words.slice(0, maxWords).join(' ') + '...'
   }
   return text
+}
+
+Post.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  updated_at: PropTypes.string.isRequired,
+  author_name: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired
 }
 
 export default Post

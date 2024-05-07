@@ -1,6 +1,8 @@
 import React from 'react'
 import './button.css'
 
+import PropTypes from 'prop-types'
+
 const Button = ({ onClick, text }) => {
   const splitText = (text) => {
     return text.split('').map((char, index) => (
@@ -18,3 +20,8 @@ const Button = ({ onClick, text }) => {
 }
 
 export default Button
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired
+}

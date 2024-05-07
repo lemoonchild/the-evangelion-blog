@@ -8,9 +8,9 @@ import AutoExpandingTextarea from '../components/expandingArea.jsx'
 import { useAuth } from '../hooks/autProvider.jsx'
 import NotificationManager from '../components/notification.jsx'
 
-const Post = lazy(() => import('../components/post.jsx'))
-
 import './centerPages.css'
+
+const Post = lazy(() => import('../components/post.jsx'))
 
 export const Home = () => {
   return (
@@ -200,7 +200,7 @@ export const Posts = () => {
     setError(false)
     setIsEmpty(false)
     try {
-      const response = await fetch('http://localhost:5000/posts')
+      const response = await fetch('https://the-evangelion-api.vercel.app/posts')
       const data = await response.json()
       if (response.status === 200) {
         setPostData(data.data)
@@ -230,11 +230,11 @@ export const Posts = () => {
 
     const newPost = {
       title: document.querySelector('input[type="text"][placeholder="Title"]').value,
-      content: content,
+      content,
       author_id: user.id,
       author_name: user.username,
       category: document.querySelector('input[type="text"][placeholder="Category"]').value,
-      tags: formattedTags,
+      tags: formattedTags
     }
 
     if (!newPost.title || !newPost.content || !newPost.category) {
@@ -243,15 +243,16 @@ export const Posts = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/post', {
+      const response = await fetch('https://the-evangelion-api.vercel.app/post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${authToken}`,
+          Authorization: `Bearer ${authToken}`
         },
-        body: JSON.stringify(newPost),
+        body: JSON.stringify(newPost)
       })
       const responseData = await response.json()
+      console.log(responseData)
       if (response.ok) {
         NotificationManager.notify('Post created successfully!', 'success')
         setIsOpen(false)

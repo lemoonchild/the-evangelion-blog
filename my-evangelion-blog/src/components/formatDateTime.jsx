@@ -1,4 +1,4 @@
-export function formatDateTime(dateTime) {
+export function formatDateTime (dateTime) {
   const date = new Date(dateTime)
   const day = date.getDate().toString().padStart(2, '0')
   const month = (date.getMonth() + 1).toString().padStart(2, '0')

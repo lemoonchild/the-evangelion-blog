@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './popUp.css'
 
 import AutoExpandingTextarea from '../components/expandingArea.jsx'
@@ -9,6 +9,8 @@ import { formatDateTime } from '../components/formatDateTime.jsx'
 import { useAuth } from '../hooks/autProvider.jsx'
 
 import NotificationManager from './notification.jsx'
+
+import PropTypes from 'prop-types'
 
 export const Popup = ({ onClose, children }) => {
   return (
@@ -24,7 +26,7 @@ export const Popup = ({ onClose, children }) => {
 }
 
 export const EditPostPopup = ({ post, onClose, onSave }) => {
-  //Auth del token
+  // Auth del token
   const authToken = useAuth().authToken
 
   const [title, setTitle] = useState(post.title)
@@ -35,20 +37,20 @@ export const EditPostPopup = ({ post, onClose, onSave }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const updatedPost = {
-      title: title,
-      content: content,
-      category: category,
-      tags: tags,
+      title,
+      content,
+      category,
+      tags
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/post/${post.id}`, {
+      const response = await fetch(`https://the-evangelion-api.vercel.app/post/${post.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${authToken}`,
+          Authorization: `Bearer ${authToken}`
         },
-        body: JSON.stringify(updatedPost),
+        body: JSON.stringify(updatedPost)
       })
       const responseData = await response.json()
 
@@ -113,7 +115,7 @@ export const PopupDetail = ({ post: initialPost, onClose, onPostsUpdated }) => {
     setShowEdit(true)
   }
 
-  //Verificación de rol y usuario
+  // Verificación de rol y usuario
   const actionUser = user.id === post.author_id || user.role === 'Administrador'
 
   const paragraphs = post.content
@@ -124,11 +126,11 @@ export const PopupDetail = ({ post: initialPost, onClose, onPostsUpdated }) => {
     if (actionUser) {
       setLoading(true)
       try {
-        const response = await fetch(`http://localhost:5000/post/${post.id}`, {
+        const response = await fetch(`https://the-evangelion-api.vercel.app/post/${post.id}`, {
           method: 'DELETE',
           headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
+            Authorization: `Bearer ${authToken}`
+          }
         })
         const data = await response.json()
         if (response.ok) {
@@ -221,4 +223,24 @@ export const PopupDetail = ({ post: initialPost, onClose, onPostsUpdated }) => {
       </div>
     </div>
   )
+}
+
+// PropTypes para Popup
+Popup.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired
+}
+
+// PropTypes para EditPostPopup
+EditPostPopup.propTypes = {
+  post: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired
+}
+
+// PropTypes para PopupDetail
+PopupDetail.propTypes = {
+  post: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onPostsUpdated: PropTypes.func.isRequired
 }

@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { RiUser3Fill } from 'react-icons/ri'
-import { RiLockPasswordFill } from 'react-icons/ri'
+import { RiUser3Fill, RiLockPasswordFill } from 'react-icons/ri'
 import { MdEmail } from 'react-icons/md'
 import { useAuth } from '../hooks/autProvider.jsx'
 
@@ -14,17 +13,17 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm()
   const { login } = useAuth()
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
     const { username, password } = data
-    const response = await fetch('http://localhost:5000/login', {
+    const response = await fetch('https://the-evangelion-api.vercel.app/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password_md5: password }),
+      body: JSON.stringify({ username, password_md5: password })
     })
     const responseData = await response.json()
     if (response.status === 200) {
@@ -33,7 +32,7 @@ export const Login = () => {
       login(responseData.token, {
         username: responseData.username,
         role: responseData.role,
-        id: responseData.id,
+        id: responseData.id
       })
       navigate('/blog')
     } else {
@@ -82,16 +81,16 @@ export const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm()
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
     const { username, email, password } = data
-    const response = await fetch('http://localhost:5000/register', {
+    const response = await fetch('https://the-evangelion-api.vercel.app/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, email, password_md5: password }),
+      body: JSON.stringify({ username, email, password_md5: password })
     })
     const responseData = await response.json()
     if (response.status === 200) {
@@ -101,7 +100,7 @@ export const Register = () => {
       NotificationManager.notify(
         responseData.message || 'The user or the email is already used!',
         'error',
-        'error',
+        'error'
       )
     }
   }

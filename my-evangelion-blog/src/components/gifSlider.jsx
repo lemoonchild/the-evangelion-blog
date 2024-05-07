@@ -1,45 +1,44 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../components/gifSlider.css'
 
 const GifSlider = () => {
   const initialImages = [
     {
       src: 'https://media1.tenor.com/m/rJonJ5PSLG0AAAAC/evangelion-neon-genesis-evangelion.gif',
-      alt: 'eva',
+      alt: 'eva'
     },
     {
       src: 'https://media1.tenor.com/m/1Glmssc3QcsAAAAC/dialuxi-dialuxi3000.gif',
-      alt: 'Shinji',
+      alt: 'Shinji'
     },
     {
       src: 'https://media1.tenor.com/m/HHsiqGbkmNcAAAAC/neon-genesis-evangelion-evangelion.gif',
-      alt: 'reaction',
+      alt: 'reaction'
     },
     {
       src: 'https://media1.tenor.com/m/ksbQKwWCJxgAAAAd/mudae-evangelion.gif',
-      alt: 'cry',
+      alt: 'cry'
     },
     {
       src: 'https://media1.tenor.com/m/Y9E2adq4XdUAAAAC/shinji-evangelion.gif',
-      alt: 'dancing',
+      alt: 'dancing'
     },
     {
       src: 'https://media1.tenor.com/m/FgGlem7vDJMAAAAd/evangelion-pubg.gif',
-      alt: 'evadancing',
+      alt: 'evadancing'
     },
     {
       src: 'https://media1.tenor.com/m/3SJrBPHrsJYAAAAC/shinji.gif',
-      alt: 'shinji2',
+      alt: 'shinji2'
     },
     {
       src: 'https://media1.tenor.com/m/7RLlLi_p0ocAAAAC/ramiel-neon-genesis-evangelion.gif',
-      alt: 'screaming',
+      alt: 'screaming'
     },
     {
       src: 'https://media1.tenor.com/m/v8RahfbOYxcAAAAC/ramiel-evangelion.gif',
-      alt: 'love',
-    },
+      alt: 'love'
+    }
   ]
 
   const [images, setImages] = useState(initialImages)
