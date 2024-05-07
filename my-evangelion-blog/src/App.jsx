@@ -4,6 +4,8 @@ import { Login, Register } from '../src/pages/loginRegister.jsx'
 import BlogMain from './pages/homePage'
 import { AuthProvider } from '../src/hooks/autProvider.jsx'
 import { ToastNotification } from './components/notification.jsx'
+import ProtectedRoute from './components/Router/protectedRouder.jsx'
+import AdminPage from './pages/Admin/adminPage.jsx'
 
 import './App.css'
 
@@ -17,6 +19,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/blog" element={<BlogMain action="blog" />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute roles={['Administrador']} action="admin">
+                <AdminPage action={'admin'} />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </AuthProvider>

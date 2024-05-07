@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './popUp.css'
 
 import AutoExpandingTextarea from '../components/expandingArea.jsx'
@@ -23,7 +23,7 @@ export const Popup = ({ onClose, children }) => {
   )
 }
 
-export const EditPostPopup = ({ post, onClose, onSave }) => {
+export const EditPostPopup = ({ post, onClose, onSave, onPostsUpdated }) => {
   //Auth del token
   const authToken = useAuth().authToken
 
@@ -32,11 +32,12 @@ export const EditPostPopup = ({ post, onClose, onSave }) => {
   const [category, setCategory] = useState(post.category)
   const [tags, setTags] = useState(post.tags)
 
-  console.log(post.id)
+  const handleDelayedClose = () => {
+    setTimeout(onClose, 2000)
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    // Construye el objeto con los datos actualizados
     const updatedPost = {
       title: title,
       content: content,
@@ -54,20 +55,20 @@ export const EditPostPopup = ({ post, onClose, onSave }) => {
         body: JSON.stringify(updatedPost),
       })
       const responseData = await response.json()
-      console.log(updatedPost)
+
       if (response.ok) {
         NotificationManager.notify('Post updated successfully!', 'success')
-        console.log('Post updated successfully:', responseData)
         onSave(updatedPost)
-        onClose() // Cierra el popup después de guardar
+        onPostsUpdated()
+
+        handleDelayedClose()
       } else {
         NotificationManager.notify('The post fail to be updated!', 'error')
-
         throw new Error('Failed to update post' || responseData.message)
       }
     } catch (error) {
       console.error('Error updating post:', error)
-      alert('Failed to update post: ' + error.message)
+      NotificationManager.notify('Failed to update post! ', 'error')
     }
   }
 
@@ -96,7 +97,7 @@ export const EditPostPopup = ({ post, onClose, onSave }) => {
         <label htmlFor="tags">Tags</label>
         <input id="tags" type="text" value={tags} onChange={(e) => setTags(e.target.value)} />
 
-        <button type="submit" className="button__popup">
+        <button type="submit" className="button__popup" onClick={onPostsUpdated}>
           Save Changes
         </button>
       </form>
@@ -104,12 +105,17 @@ export const EditPostPopup = ({ post, onClose, onSave }) => {
   )
 }
 
-export const PopupDetail = ({ post: initialPost, onClose }) => {
+export const PopupDetail = ({ post: initialPost, onClose, onPostsUpdated }) => {
   const [post, setPost] = useState(initialPost)
+  const { user, authToken } = useAuth()
 
   const [showConfirm, setShowConfirm] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
-  const { user, authToken } = useAuth()
+  const [loading, setLoading] = useState(false)
+
+  const [postData, setPostData] = useState([])
+  const [isEmpty, setIsEmpty] = useState(false)
+  const [initialLoad, setInitialLoad] = useState(true)
 
   const displayedTags = post.tags.split(',').map((tag) => tag.trim())
   const formattedUpdateAt = formatDateTime(post.updated_at)
@@ -125,8 +131,30 @@ export const PopupDetail = ({ post: initialPost, onClose }) => {
     .split('\n')
     .map((paragraph, index) => <p key={index}>{paragraph}</p>)
 
-  const handleConfirmDelete = async () => {
+  const fetchPosts = async () => {
+    if (initialLoad) setLoading(true)
+    try {
+      const response = await fetch('http://localhost:5000/posts')
+      const data = await response.json()
+      if (response.status === 200) {
+        setPostData(data.data)
+        setIsEmpty(data.data.length === 0)
+      } else {
+        console.error('Failed to fetch posts:', data.message)
+      }
+    } catch (error) {
+      console.error('Error fetching posts:', error)
+    } finally {
+      if (initialLoad) {
+        setLoading(false)
+        setInitialLoad(false)
+      }
+    }
+  }
+
+  const handleDeletePost = async () => {
     if (actionUser) {
+      setLoading(true)
       try {
         const response = await fetch(`http://localhost:5000/post/${post.id}`, {
           method: 'DELETE',
@@ -139,17 +167,18 @@ export const PopupDetail = ({ post: initialPost, onClose }) => {
           NotificationManager.notify('Post deleted successfully!', 'success')
           console.log('Post deleted successfully:', data)
           onClose() // Cierra el popup después de borrar
+          onPostsUpdated()
         } else {
           NotificationManager.notify('The post fail to be deleted!', 'error')
           throw new Error(data.message || 'Failed to delete post')
         }
       } catch (error) {
         console.error('Error deleting post:', error)
-        alert('Failed to delete post: ' + error.message)
+        NotificationManager.notify('Failed to delete post: ' + error.message, 'error')
       }
       setShowConfirm(false) // Cierra el diálogo de confirmación
     } else {
-      alert('You do not have permission to delete this post.')
+      NotificationManager.notify('You do not have permission to delete this post.', 'error')
     }
   }
 
@@ -206,17 +235,28 @@ export const PopupDetail = ({ post: initialPost, onClose }) => {
           <div className="confirmation-popup">
             <p>Are you sure you want to delete this post?</p>
             <div className="buttons__action">
-              <button onClick={handleConfirmDelete} className="button__popup">
-                Yes!
+              <button onClick={handleDeletePost} className="button__popup" disabled={loading}>
+                Yes
               </button>
-              <button onClick={() => setShowConfirm(false)} className="button__popup">
+              <button
+                onClick={() => setShowConfirm(false)}
+                className="button__popup"
+                disabled={loading}
+              >
                 No!
               </button>
             </div>
           </div>
         )}
 
-        {showEdit && <EditPostPopup post={post} onClose={onClose} onSave={handleSaveChanges} />}
+        {showEdit && (
+          <EditPostPopup
+            post={post}
+            onClose={onClose}
+            onSave={handleSaveChanges}
+            onPostsUpdated={fetchPosts}
+          />
+        )}
       </div>
     </div>
   )

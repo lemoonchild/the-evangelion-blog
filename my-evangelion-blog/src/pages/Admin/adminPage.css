@@ -1,0 +1,387 @@
+@font-face {
+  font-family: angel;
+  src: url('../assets/fonts_folder/MetalBlockUltra.ttf') format('truetype');
+}
+
+.blog {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  height: 100vh;
+  background: url('../../images/back1.jpg');
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.all__blog {
+  border: ridge 4px #7e6fc4;
+  outline: solid 5px black;
+
+  width: 90%;
+  min-height: 90%;
+  margin: auto;
+  border-radius: 10px;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  overflow: auto;
+}
+
+.logo__evangelion {
+  align-self: center;
+  width: 500px;
+  height: auto;
+  padding-top: 40px;
+  filter: drop-shadow(0.5px 0.5px 0 white) drop-shadow(-1px 1px 0 white)
+    drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0.5px white)
+    drop-shadow(0 0.5px 1px white) drop-shadow(0.5px 0.5px 1px white)
+    drop-shadow(0.5px 0.5px 1px black);
+}
+
+.title__blog {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 20px;
+  background: none;
+  border: none;
+}
+
+.title__blog h1 {
+  font-family: 'angel', sans-serif;
+  font-size: 140px;
+  color: black;
+  letter-spacing: 5px;
+  font-weight: lighter;
+  text-shadow: 0 3px #7e6fc4, 3px 0 #7e6fc4;
+  width: auto;
+  margin: 0;
+  filter: drop-shadow(0.5px 0.5px 0 white) drop-shadow(-1px 1px 0 white)
+    drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0.5px white)
+    drop-shadow(0 0.5px 1px white) drop-shadow(0.5px 0.5px 1px white)
+    drop-shadow(0.5px 0.5px 1px black);
+  z-index: 2;
+}
+
+.title__blog h1,
+h2 {
+  position: relative;
+  top: -15px;
+  left: 10px;
+}
+
+.title__blog h2 {
+  top: 10px;
+}
+.title__blog h2 {
+  font-family: 'angel', sans-serif;
+  font-size: 100px;
+  color: black;
+  letter-spacing: 5px;
+  font-weight: lighter;
+  text-shadow: 0 3px #bfc9d5, 3px 0 #bfc9d5;
+  width: auto;
+  margin: 0;
+  filter: drop-shadow(0.5px 0.5px 0 white) drop-shadow(-1px 1px 0 white)
+    drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0.5px white)
+    drop-shadow(0 0.5px 1px white) drop-shadow(0.5px 0.5px 1px white)
+    drop-shadow(0.5px 0.5px 1px black);
+  z-index: 2;
+}
+
+.eva {
+  position: relative;
+  width: 300px;
+  height: auto;
+  margin: 20px auto;
+  transform: rotate(10deg);
+  top: -350px;
+  left: -580px;
+  z-index: 2;
+  filter: drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0 white) drop-shadow(0 0.5px 0.5px white)
+    drop-shadow(0.5px 0.5px 1px white) drop-shadow(-0.5px 0.5px 0 black)
+    drop-shadow(0 0.5px 0 black) drop-shadow(0 0.5px 0 black);
+}
+
+.elements__header {
+  position: relative;
+  align-items: center;
+  top: -85px;
+  display: flex;
+  gap: 10px;
+  font-size: 25px;
+  gap: 20px;
+  z-index: 1;
+}
+
+.elements__header p {
+  text-decoration: none;
+  padding: 10px;
+  opacity: 1;
+  transition: color 0.3s, text-shadow 0.3s;
+  color: #ffffff;
+}
+
+.elements__header p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #32273f, 0 0 30px #32273f,
+    0 0 40px #32273f;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  opacity: 0.8;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: -550px;
+  z-index: 1;
+  border: ridge 4px black;
+  outline: solid 5px black;
+  border-radius: 10px;
+  width: 1350px;
+  height: 120px;
+  background: url('../images/back2.jpg') top right no-repeat;
+  color: #ffffff;
+}
+
+.header a {
+  text-decoration: none;
+  padding: 10px;
+  opacity: 1;
+  transition: color 0.3s, text-shadow 0.3s;
+  color: #ffffff;
+}
+
+.header span {
+  font-weight: bold;
+  color: #ffffff;
+}
+.header a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #32273f, 0 0 30px #32273f,
+    0 0 40px #32273f;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  height: auto;
+  padding-top: 70px;
+}
+
+.main .left,
+.main .right {
+  flex: 1;
+  padding: 20px;
+}
+
+.main .center {
+  flex: 3;
+  padding: 20px;
+}
+
+.nav,
+.bio,
+.calendar,
+.status,
+.find__me,
+.my__cat {
+  margin-top: 20px;
+  position: relative;
+  border: ridge 4px #b5a2c8;
+  outline: solid 5px black;
+  background: url('../../images/backleft1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 150px;
+  margin-bottom: 50px;
+}
+
+.title__bar {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0;
+  border: solid 2px #8e6ca6;
+  background: url('../../images/titleback.png');
+}
+
+.nav__elements {
+  padding-top: 20px;
+}
+
+.nav p,
+.bio p,
+.calendar p,
+.status p,
+.find__me p {
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.nav a,
+.bio a,
+.calendar a,
+.status a {
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.icon__home,
+.icon__me,
+.icon__posts,
+.icon__star,
+.icon__insta,
+.icon__github,
+.icon__twitter,
+.icon__steam {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 20px;
+  position: relative;
+  top: 10px;
+}
+
+.icon__home,
+.icon__me,
+.icon__posts {
+  top: -6px;
+}
+
+.icon__insta,
+.icon__github,
+.icon__twitter,
+.icon__steam {
+  top: 0px;
+}
+
+.status {
+  max-height: 400px;
+  overflow: auto;
+}
+.icon__home {
+  background-image: url('https://media.tenor.com/Hp5cpFFuHjwAAAAi/rei-chiquita.gif');
+}
+
+.icon__me {
+  background-image: url('https://media.tenor.com/k0aU-pXp0NMAAAAi/asuka-asuka-langley.gif');
+}
+
+.icon__posts {
+  background-image: url('https://media.tenor.com/8Yp9XkSvkPIAAAAi/rei-ayanami-bread.gif');
+}
+.icon__star {
+  background-image: url('https://i.pinimg.com/originals/98/e3/6f/98e36f4aec7fd3ad3f41551b4def17f7.gif');
+}
+
+.icon__insta {
+  background-image: url('https://i.seadn.io/gae/dagAl0UM1srhLO8pD7cblU0DR_mEypemN9b66jF1rmgKFNvYWrki72ryMTMY-qsr3GQ76pChB74UaiynLSmmZfIP3GPKsaRfk2rq?auto=format&dpr=1&w=1000');
+}
+.icon__github {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-image: url('https://static-00.iconduck.com/assets.00/github-icon-2048x2048-4uclrgic.png');
+}
+.icon__twitter {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-image: url('https://cdn.icon-icons.com/icons2/2873/PNG/512/twitter_pixel_logo_icon_181924.png');
+}
+.icon__steam {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7a48ed11-13b2-44e3-a982-8d763d500a3e/db6u02a-edde930a-c504-4284-a0ce-bc88e4ba15b2.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdhNDhlZDExLTEzYjItNDRlMy1hOTgyLThkNzYzZDUwMGEzZVwvZGI2dTAyYS1lZGRlOTMwYS1jNTA0LTQyODQtYTBjZS1iYzg4ZTRiYTE1YjIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.bH5kQSIO2Fp1YhXcwTgqQCG-n0HADfWmtPIdqxaF_ZI');
+}
+
+.element {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 10px;
+  max-height: 55px;
+  width: 200px;
+  margin-left: 30px;
+  background: linear-gradient(
+    180deg,
+    #8e6ca6 0%,
+    #b5a2c8 45%,
+    #8e6ca6 47%,
+    #8e6ca6 60%,
+    #4e2b56 100%
+  );
+  padding-left: 5px;
+  border: solid 2px #8e6ca6;
+  filter: drop-shadow(0 0.5px 0 gray) drop-shadow(0 0.5px 0 gray) drop-shadow(0 0.5px 0.5px gray)
+    drop-shadow(0.5px 0.5px 1px gray) drop-shadow(-0.5px 0.5px 0 black) drop-shadow(0 0.5px 0 black)
+    drop-shadow(0 0.5px 0 black);
+}
+
+.nav__elements p {
+  text-decoration: none;
+  color: white;
+  line-height: 30px;
+}
+
+.nav__elements p:hover {
+  text-decoration: underline;
+}
+
+.elements {
+  text-decoration: none;
+  color: white;
+  line-height: 30px;
+}
+
+.find__me a {
+  text-decoration: none;
+  color: white;
+  line-height: 30px;
+}
+
+.find__me a:hover {
+  text-decoration: underline;
+}
+
+.calendar__blog {
+  font-family: 'hearts', sans-serif;
+  color: white;
+}
+
+.cat {
+  width: 190px;
+  height: 300px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+.info span {
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+}
+
+.rei__image {
+  margin-top: 30px;
+}

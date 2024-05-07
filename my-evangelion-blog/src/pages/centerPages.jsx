@@ -170,6 +170,10 @@ export const Posts = () => {
   const [selectedPost, setSelectedPost] = useState(null)
   const [postData, setPostData] = useState([])
 
+  const [loading, setLoading] = useState(false)
+  const [isEmpty, setIsEmpty] = useState(false)
+  const [initialLoad, setInitialLoad] = useState(true)
+
   const togglePopup = () => {
     setIsOpen(!isOpen)
   }
@@ -189,6 +193,31 @@ export const Posts = () => {
   const closePopup = () => {
     setSelectedPost(null)
   }
+
+  const fetchPosts = async () => {
+    if (initialLoad) setLoading(true)
+    try {
+      const response = await fetch('http://localhost:5000/posts')
+      const data = await response.json()
+      if (response.status === 200) {
+        setPostData(data.data)
+        setIsEmpty(data.data.length === 0)
+      } else {
+        console.error('Failed to fetch posts:', data.message)
+      }
+    } catch (error) {
+      console.error('Error fetching posts:', error)
+    } finally {
+      if (initialLoad) {
+        setLoading(false)
+        setInitialLoad(false)
+      }
+    }
+  }
+
+  useEffect(() => {
+    fetchPosts()
+  }, [])
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
@@ -234,32 +263,8 @@ export const Posts = () => {
     } catch (error) {
       console.error('Error creating post:', error)
     }
-  }
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/posts')
-
-        const data = await response.json()
-        if (response.status === 200) {
-          setPostData(data.data)
-        } else {
-          console.error('Failed to fetch posts:', data.message)
-        }
-      } catch (error) {
-        console.error('Error fetching posts:', error)
-      }
-    }
-
     fetchPosts()
-
-    const interval = setInterval(() => {
-      fetchPosts()
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [])
+  }
 
   return (
     <div className="posts">
@@ -302,18 +307,27 @@ export const Posts = () => {
           )}
           <div className="content-section">
             <div className="all_posts">
-              {postData.length > 0 ? (
+              {loading ? (
+                <div className="loading-state">
+                  <img
+                    src="https://media1.tenor.com/m/t5DVR8VLLpAAAAAC/artisan-liga.gif"
+                    alt="Loading..."
+                  />
+                </div>
+              ) : isEmpty ? (
+                <p>No posts available</p>
+              ) : (
                 postData.map((post, index) => (
                   <div key={index} onClick={() => openPopup(post)}>
                     <Post {...post} />
                   </div>
                 ))
-              ) : (
-                <p>No posts available</p>
               )}
-              {selectedPost && <PopupDetail post={selectedPost} onClose={closePopup} />}
+              {selectedPost && (
+                <PopupDetail post={selectedPost} onClose={closePopup} onPostsUpdated={fetchPosts} />
+              )}
             </div>
-          </div>
+          </div>{' '}
         </div>
       </div>
     </div>
