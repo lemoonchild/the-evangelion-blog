@@ -10,7 +10,7 @@ import { useAuth } from '../../hooks/autProvider.jsx'
 
 import PropTypes from 'prop-types'
 
-import './adminPage.css'
+import '../homePage.css'
 
 const AdminBlog = () => {
   const navigate = useNavigate()
@@ -186,12 +186,12 @@ const AdminPage = ({ action }) => {
 
 // PropTypes para AdminBlog
 AdminBlog.propTypes = {
-  action: PropTypes.string.isRequired
+  action: PropTypes.string.isRequired,
 }
 
 // PropTypes para AdminPage
 AdminPage.propTypes = {
-  action: PropTypes.string.isRequired
+  action: PropTypes.string.isRequired,
 }
 
 export default AdminPage

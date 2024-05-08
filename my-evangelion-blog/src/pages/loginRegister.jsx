@@ -13,7 +13,7 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm()
   const { login } = useAuth()
   const navigate = useNavigate()
@@ -23,7 +23,7 @@ export const Login = () => {
     const response = await fetch('https://the-evangelion-api.vercel.app/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password_md5: password })
+      body: JSON.stringify({ username, password_md5: password }),
     })
     const responseData = await response.json()
     if (response.status === 200) {
@@ -32,7 +32,7 @@ export const Login = () => {
       login(responseData.token, {
         username: responseData.username,
         role: responseData.role,
-        id: responseData.id
+        id: responseData.id,
       })
       navigate('/blog')
     } else {
@@ -43,7 +43,7 @@ export const Login = () => {
   return (
     <div className="login__page">
       <div className="login">
-        <img src="../images/logo.png" alt="top" />
+        <img src="https://i.postimg.cc/SKddTPsd/image-2024-05-07-175107231.png" alt="top" />
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Welcome again!</h1>
           <h2>Please, login</h2>
@@ -81,7 +81,7 @@ export const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm()
   const navigate = useNavigate()
 
@@ -90,7 +90,7 @@ export const Register = () => {
     const response = await fetch('https://the-evangelion-api.vercel.app/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, email, password_md5: password })
+      body: JSON.stringify({ username, email, password_md5: password }),
     })
     const responseData = await response.json()
     if (response.status === 200) {
@@ -100,7 +100,7 @@ export const Register = () => {
       NotificationManager.notify(
         responseData.message || 'The user or the email is already used!',
         'error',
-        'error'
+        'error',
       )
     }
   }
@@ -108,7 +108,7 @@ export const Register = () => {
   return (
     <div className="login__page">
       <div className="login">
-        <img src="../images/logo.png" alt="top" />
+        <img src="https://i.postimg.cc/SKddTPsd/image-2024-05-07-175107231.png" alt="top" />
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Nice to see you!</h1>
           <h2>Please, register</h2>

@@ -35,13 +35,21 @@ const Blog = () => {
   return (
     <div className="blog">
       <div className="all__blog">
-        <img src="../images/logo.png" alt="" className="logo__evangelion" />
+        <img
+          src="https://i.postimg.cc/SKddTPsd/image-2024-05-07-175107231.png"
+          alt=""
+          className="logo__evangelion"
+        />
 
         <div className="title__blog">
           <h1>My Evangelion</h1>
           <h2>.blog!</h2>
         </div>
-        <img src="../images/eva.png" alt="" className="eva" />
+        <img
+          src="https://i.postimg.cc/V6HR1bXb/image-2024-05-07-175151415.png"
+          alt=""
+          className="eva"
+        />
 
         <div className="header">
           <div className="elements__header">
@@ -165,7 +173,11 @@ const Blog = () => {
               <div className="title__bar">
                 <h1>my cat</h1>
               </div>
-              <img src="../../images/cat.png" alt="cat" className="cat" />
+              <img
+                src="https://i.postimg.cc/hPQCDMy4/image-2024-05-07-174919624.png"
+                alt="cat"
+                className="cat"
+              />
             </div>
             <img
               src="https://media.tenor.com/9WQGZwVRo9EAAAAi/evangelion.gif"
@@ -185,12 +197,12 @@ const BlogMain = ({ action }) => {
 
 // PropTypes para Blog
 Blog.propTypes = {
-  action: PropTypes.string.isRequired
+  action: PropTypes.string.isRequired,
 }
 
 // PropTypes para BlogMain
 BlogMain.propTypes = {
-  action: PropTypes.string.isRequired
+  action: PropTypes.string.isRequired,
 }
 
 export default BlogMain
